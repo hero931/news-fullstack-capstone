@@ -1,5 +1,5 @@
 {
-    "name": "wellness-organizer-node-capstone",
+    "name": "news-fullstack-capstone",
     "version": "1.0.0",
     "description": "",
     "main": "server.js",
@@ -32,12 +32,12 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/hero931/wellness-organizer-node-capstone.git"
+        "url": "git+https://github.com/hero931/news-fullstack-capstone.git"
     },
-    "author": "Meryem Yanar",
+    "author": "Ilya Andreev",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/hero931/wellness-organizer-node-capstone/issues"
+        "url": "https://github.com/hero931/news-fullstack-capstone/issues"
     },
-    "homepage": "https://github.com/hero931/wellness-organizer-node-capstone#readme"
+    "homepage": "https://github.com/hero931/news-fullstack-capstone#readme"
 }

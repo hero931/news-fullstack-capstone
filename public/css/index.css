@@ -4,6 +4,18 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial;
 }
 
+.logo-header {
+    display: flex;
+    position: fixed;
+    left: 3vw;
+    top: 25px;
+    font-size: 25px;
+    cursor: pointer;
+    font-family: AvenirNextBold;
+    color: rgb(53, 53, 53);
+    font-weight: bold;
+}
+
 #sidebar {
     background: #151718;
     width: 200px;
@@ -54,7 +66,7 @@ ul li a {
 }
 
 #sidebar-btn span {
-    height: 1.5px;
+    height: 2px;
     background: #111;
     margin-bottom: 5px;
     display: block;
@@ -72,4 +84,254 @@ ul li a {
 
 #sidebar-btn span:nth-child(3) {
     width: 50%;
+}
+
+.intro-page {
+    background: url(../images/int.jpg) no-repeat;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+    height: 100%;
+}
+
+.container {
+    display: inline-block;
+    margin-left: 20%;
+    margin-top: 10%;
+}
+
+.introA {
+    font-size: 130px;
+    white-space: nowrap;
+    font-family: AvenirNextBold;
+}
+
+.introB {
+    font-size: 47px;
+    font-family: AvenirNextBold;
+    margin-top: -15%;
+}
+
+.contSport {
+    font-family: AvenirNextBold;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 150px;
+    padding-top: 150px;
+    text-align: center;
+}
+
+.intSport {
+    font-size: 400px;
+    margin-top: 20%;
+    color: gainsboro;
+}
+
+.sport-int-page {
+    background-color: azure;
+}
+
+#sport-section {
+    border-image: linear-gradient(to right, grey 0%, red 100%);
+    border-image-slice: 2;
+    margin: auto;
+    width: 80%;
+    height: 85%;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    box-shadow: 15px 15px 40px rgba(25, 38, 51, 0.4);
+    text-align: center;
+}
+
+.sport-page {
+    background: url(../images/sp.jpg) no-repeat;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+    height: 100%;
+}
+
+.contArt {
+    font-family: AvenirNextBold;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 150px;
+    padding-top: 150px;
+    text-align: center;
+}
+
+.intArt {
+    font-size: 400px;
+    margin-top: 20%;
+    color: gainsboro;
+}
+
+.art-int-page {
+    background-color: azure;
+}
+
+#art-section {
+    border-image: linear-gradient(to right, grey 0%, red 100%);
+    border-image-slice: 2;
+    margin: auto;
+    width: 80%;
+    height: 85%;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    box-shadow: 15px 15px 40px rgba(25, 38, 51, 0.4);
+    text-align: center;
+}
+
+.art-page {
+    background: url(../images/artOne.jpg) no-repeat;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+    height: 100%;
+}
+
+.contPolitics {
+    font-family: AvenirNextBold;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 150px;
+    padding-top: 150px;
+    text-align: center;
+}
+
+.intPolitics {
+    font-size: 400px;
+    margin-top: 20%;
+    color: gainsboro;
+}
+
+.politics-int-page {
+    background-color: azure;
+}
+
+#politics-section {
+    border-image: linear-gradient(to right, grey 0%, red 100%);
+    border-image-slice: 2;
+    margin: auto;
+    width: 80%;
+    height: 85%;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    box-shadow: 15px 15px 40px rgba(25, 38, 51, 0.4);
+    text-align: center;
+}
+
+.politics-page {
+    background: url(../images/politics.jpg) no-repeat;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+    height: 100%;
+}
+
+.contBusiness {
+    font-family: AvenirNextBold;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 150px;
+    padding-top: 150px;
+    text-align: center;
+}
+
+.intBusiness {
+    font-size: 400px;
+    margin-top: 20%;
+    color: gainsboro;
+}
+
+.business-int-page {
+    background-color: azure;
+}
+
+#business-section {
+    border-image: linear-gradient(to right, grey 0%, red 100%);
+    border-image-slice: 2;
+    margin: auto;
+    width: 80%;
+    height: 85%;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    box-shadow: 15px 15px 40px rgba(25, 38, 51, 0.4);
+    text-align: center;
+}
+
+.business-page {
+    background: url(../images/business.jpg) no-repeat;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+    height: 100%;
+}
+
+#login .box {
+    border: 10px solid transparent;
+    border-image: linear-gradient(to right, #e8491d 0%, purple 100%);
+    border-image-slice: 2;
+    margin: 0 auto;
+    margin-bottom: 82px;
+    margin-top: 30px;
+    width: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    box-shadow: 15px 15px 40px rgba(25, 38, 51, 0.4);
+    text-align: center;
+}
+
+#login p {
+    margin-bottom: 10px;
+    margin-top: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+#login legend {
+    font-size: 30px;
+    font-family: 'Bungee Hairline', sans-serif;
+    font-weight: 900;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+#login form label {
+    font-family: 'Bungee Hairline', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+#login input {
+    margin-top: 20px;
+    width: 70%;
+    max-width: 400px;
+    margin-bottom: 15px;
+}
+
+#login button {
+    height: 25px;
+    background: #e8491d;
+    border: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #ffffff;
+    margin-left: 10px;
+}
+
+#login button:hover {
+    background: #cccccc;
 }

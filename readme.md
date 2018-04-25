@@ -64,7 +64,7 @@ AS A LOGGED-IN USER
 
 
 ## Working Prototype
-Find a working prototype with Node at https://github.com/hero931/wellness-organizer-node-capstone .
+Find a working prototype with Node at https://news-fullstack-capstone.herokuapp.com/.
 
 ## Functionality
 When set up an account, user will be taken to Dashboard page, where will be given an option to add wellness program (nutrition, workout, progress). In addition, Dashboard page will provide with optional basic examples of nutrition and workout for user. Champion page will provide with workout examples at different levels that user can have at his/her workout program. Information that user added to his/her program will be shown at Records page as separate nutrition, workout, progress sections.

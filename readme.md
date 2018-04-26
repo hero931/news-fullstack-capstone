@@ -47,6 +47,10 @@ A bit different approach to see the news based on interest, instead of having me
 
 * As a user I would like to read the entire article at original source.
 
+## Wireframe
+
+
+
 
 ## Working Prototype
 Find a working prototype with Node at https://news-fullstack-capstone.herokuapp.com/

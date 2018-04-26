@@ -49,12 +49,22 @@ A bit different approach to see the news based on interest, instead of having me
 
 ## Wireframe
 
-
+![image](https://user-images.githubusercontent.com/31460531/39335234-30c6b3e2-4980-11e8-9857-d9455eb37d3c.png)
+![image](https://user-images.githubusercontent.com/31460531/39335314-7b976f38-4980-11e8-91f4-1f3dc0ee9212.png)
+![image](https://user-images.githubusercontent.com/31460531/39335326-8a505c74-4980-11e8-838e-a55a0737499f.png)
+![image](https://user-images.githubusercontent.com/31460531/39335341-98d0d2ec-4980-11e8-99a3-9c81c45970a9.png)
+![image](https://user-images.githubusercontent.com/31460531/39335356-aabc7394-4980-11e8-8d94-758526547d35.png)
+![image](https://user-images.githubusercontent.com/31460531/39335369-b91dd400-4980-11e8-9ace-89312a73f4c5.png)
+![image](https://user-images.githubusercontent.com/31460531/39335383-c4fbda6a-4980-11e8-94e3-02544543429f.png)
+![image](https://user-images.githubusercontent.com/31460531/39335395-d5b3ed02-4980-11e8-8b68-d362b8be1203.png)
+![image](https://user-images.githubusercontent.com/31460531/39335410-e5434e20-4980-11e8-80b5-f4427c9db773.png)
+![image](https://user-images.githubusercontent.com/31460531/39335417-f2db5ca8-4980-11e8-80cb-c97d7a1ad934.png)
+![image](https://user-images.githubusercontent.com/31460531/39335427-ff7883be-4980-11e8-8bbc-bfc39a6164c0.png)
 
 
 ## Working Prototype
 Find a working prototype with Node at https://news-fullstack-capstone.herokuapp.com/
-.
+
 
 ## Functionality
 When a user starts navigating from the landing page results will be shown up based on interest of the current page. User will be able to read the entire story at original source. Navigating through the search page user will be given an opportunity to type in certain date and see the results on following results page.

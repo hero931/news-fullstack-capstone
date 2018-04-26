@@ -1,6 +1,6 @@
-# Wellness Organizer
+# News Beast
 
-Wellness Organizer is an interactive full-stack web app that helps users build their own wellness program that includes combination of nutrition and workout exercises by guiding them through the principle of consistent progress.
+News Beast is an interactive full-stack web app that provides to user with the latest sports, politics, business and art news. In addition app lets user to get a top news for specific date, like user's birthday.
 
 ## Screenshots
 
@@ -10,19 +10,24 @@ LANDING PAGE:
 ![image](https://github.com/hero931/wellness-organizer-node-capstone/blob/master/github-images/landing-page.png)
 
 
-LOGIN PAGE:
+SPORTS PAGE:
 
 ![image](https://github.com/hero931/wellness-organizer-node-capstone/blob/master/github-images/login-page.png)
 
 
-DASHBOARD PAGE:
+ART PAGE:
 
 ![image](https://github.com/hero931/wellness-organizer-node-capstone/blob/master/github-images/dashboard-page.png)
 
 
-CHAMPION PAGE:
+POLITICS PAGE:
 
 ![image](https://github.com/hero931/wellness-organizer-node-capstone/blob/master/github-images/champion-page.png)
+
+
+BUSINESS PAGE:
+
+![image](https://github.com/hero931/wellness-organizer-node-capstone/blob/master/github-images/results-page.png)
 
 
 RESULTS PAGE:
@@ -30,7 +35,7 @@ RESULTS PAGE:
 ![image](https://github.com/hero931/wellness-organizer-node-capstone/blob/master/github-images/results-page.png)
 
 ## Use Case
-Wellness Organizer is for anyone who would like to try a new approach of managing his/her healthy lifestyle. This app will help you pick SMART goals which are - specific, measurable, achievable, relevant and timely!
+A bit different approach to see the news based on interest, instead of having mess of all the news on landing page. This way user can focus on specific interest and see all the related news. Having an option for user to be somehow interacted
 
 ## Initial UX
 

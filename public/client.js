@@ -6,7 +6,20 @@ $(document).on("click", "#sidebar-btn", function(event){
     $('#sidebar').toggleClass('visible');
 });
 
+/*$(document).on("mouseout", "#sidebar ul li a", function(event){
+    event.preventDefault();
+    $('#sidebar').removeClass('visible');
+});*/
+
+//Close sidebar
+
+
 //Sidebar menu
+$(document).on("click", "#home", function(event){
+    event.preventDefault();
+    location.reload();
+});
+
 $(document).on("click", "#sports", function(event){
     event.preventDefault();
     $('.hide-me').hide();
@@ -53,6 +66,7 @@ function getDataFromNyt(){
         method: 'GET',
 
     }).done(function(result) {
+        console.log(result);
         outcome.html("");
         outcome.append(`<div class="row"><div class="col-4"><span class="title">${results.title}</span><br><br>
                       <img class="photo" src="${results.multimedia.url}">

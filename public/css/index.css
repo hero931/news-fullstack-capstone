@@ -56,9 +56,13 @@ ul li {
     list-style: none;
 }
 
+ul li a:hover {
+    background-color: snow;
+}
+
 ul li a {
     background: #1C1E1F;
-    color: #ccc;
+    color: darkgrey;
     display: block;
     width: 180px;
     padding: 10px;

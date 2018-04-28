@@ -131,7 +131,7 @@ ul li a {
 .col-container {
     display: table;
     width: 100%;
-    margin-bottom: -20px;
+    margin-bottom: -38px;
     margin-top: 10px;
 }
 
@@ -384,7 +384,6 @@ img {
 
 #login .box {
     margin: 0 auto;
-    margin-top: 8%;
     width: 60%;
     background: rgba(255, 255, 255, 0.9);
     padding: 10px;

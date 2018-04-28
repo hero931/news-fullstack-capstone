@@ -8,11 +8,6 @@ $(document).on("click", "#sidebar-btn", function (event) {
     $('#sidebar-close').show();
 });
 
-/*$(document).on("mouseout", "#sidebar ul li a", function(event){
-    event.preventDefault();
-    $('#sidebar').removeClass('visible');
-});*/
-
 //Close sidebar
 $(document).on("click", "#sidebar-close", function (event) {
     event.preventDefault();
@@ -56,7 +51,12 @@ $(document).on("click", "#search", function (event) {
     $('.login-page').show();
 });
 
-
+//Giving results based on search
+$(document).on("click", "#login_submit", function (event) {
+    event.preventDefault();
+    $('.hide-me').hide();
+    $('.result-page').show();
+});
 
 
 //Results

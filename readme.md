@@ -7,35 +7,40 @@ News Beast is an interactive full-stack web app that provides to user with the l
 
 LANDING PAGE:
 
-![image](https://github.com/hero931/wellness-organizer-node-capstone/blob/master/github-images/landing-page.png)
+![image](https://github.com/hero931/news-fullstack-capstone/blob/master/github-images/landing.png)
 
 
 SPORTS PAGE:
 
-![image](https://github.com/hero931/wellness-organizer-node-capstone/blob/master/github-images/login-page.png)
+![image](https://github.com/hero931/news-fullstack-capstone/blob/master/github-images/sport.png)
 
 
-ART PAGE:
+ARTS PAGE:
 
-![image](https://github.com/hero931/wellness-organizer-node-capstone/blob/master/github-images/dashboard-page.png)
+![image](https://github.com/hero931/news-fullstack-capstone/blob/master/github-images/arts.png)
 
 
 POLITICS PAGE:
 
-![image](https://github.com/hero931/wellness-organizer-node-capstone/blob/master/github-images/champion-page.png)
+![image](https://github.com/hero931/news-fullstack-capstone/blob/master/github-images/politics.png)
 
 
 BUSINESS PAGE:
 
-![image](https://github.com/hero931/wellness-organizer-node-capstone/blob/master/github-images/results-page.png)
+![image](https://github.com/hero931/news-fullstack-capstone/blob/master/github-images/business.png)
+
+
+SEARCH PAGE:
+
+![image](https://github.com/hero931/news-fullstack-capstone/blob/master/github-images/search.png)
 
 
 RESULTS PAGE:
 
-![image](https://github.com/hero931/wellness-organizer-node-capstone/blob/master/github-images/results-page.png)
+![image](https://github.com/hero931/news-fullstack-capstone/blob/master/github-images/results.png)
 
 ## Use Case
-A bit different approach to see the news based on interest, instead of having mess of all the news on landing page. This way user can focus on specific interest and see all the interest related news. User also have some sort of interaction with app by searching news for specific date (user's birthday)! 
+A bit different approach to see the news based on interest, instead of having mess of all the news on landing page. This way user can focus on specific interest and see all the interest related news. User also have some sort of interaction with app by searching news for specific date (user's birthday)!
 
 ## Initial UX
 

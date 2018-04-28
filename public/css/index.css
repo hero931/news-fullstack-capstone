@@ -42,6 +42,25 @@ p {
     transition: right 0.3s linear;
 }
 
+#sidebar-close {
+    background: #1C1E1F;
+    color: darkgrey;
+    width: 60px;
+    text-decoration: none;
+    padding-top: 2px;
+    font-size: 40px;
+    margin-top: -6px;
+    border: none;
+    display: block;
+}
+
+ul button:hover {
+    background-color: white;
+    opacity: 0.5;
+    border-bottom: 1px solid #111;
+    color: orangered;
+}
+
 #sidebar.visible {
     right: 0px;
     transition: right 0.3s linear;
@@ -58,6 +77,7 @@ ul li {
 
 ul li a:hover {
     background-color: snow;
+    opacity: 0.5;
 }
 
 ul li a {
@@ -69,6 +89,7 @@ ul li a {
     border-bottom: 1px solid #111;
     text-decoration: none;
     padding-top: 30px;
+    font-size: 20px;
 }
 
 #sidebar-btn {
@@ -103,6 +124,26 @@ ul li a {
 
 #sidebar-btn span:nth-child(3) {
     width: 50%;
+}
+
+/*Sections style*/
+
+.col-container {
+    display: table;
+    width: 100%;
+    margin-bottom: -20px;
+    margin-top: 10px;
+}
+
+.col {
+    display: table-cell;
+    padding: 16px;
+}
+
+img {
+    width: 100%;
+    height: 25%;
+    margin-bottom: -10px;
 }
 
 .intro-page {
@@ -438,11 +479,35 @@ ul li a {
         text-align: center;
     }
 
-    #intro-section{
+    .col-container {
+        margin-top: 18px;
+    }
+
+    .col {
+        width: 20%;
+        padding: 10px;
+        height: 85px;
+    }
+
+    .col h3 {
+        font-size: 15px;
+    }
+
+    .col h4 {
+        font-size: 13px;
+    }
+
+    img {
+        width: 90%;
+        height: 90%;
+    }
+
+    #intro-section {
         width: 50%;
     }
 
-    .container h1, h2 {
+    .container h1,
+    h2 {
         margin-top: 32%;
         font-weight: 100;
         margin-left: -30px;
@@ -462,11 +527,14 @@ ul li a {
         margin-left: -30px;
     }
 
-    .intSport, .intArt, .intPolitics, .intBusiness {
+    .intSport,
+    .intArt,
+    .intPolitics,
+    .intBusiness {
         font-size: 200px;
     }
 
-    #sidebar-btn span{
+    #sidebar-btn span {
         margin-right: 5px;
     }
 
@@ -474,7 +542,7 @@ ul li a {
         margin-top: 8px;
     }
 
-    #login_form .box{
+    #login_form .box {
         margin-top: 4px;
     }
 }
@@ -494,6 +562,7 @@ ul li a {
         margin-left: 30px;
         margin-top: 110px;
         padding-bottom: 70px;
+        font-weight: 550;
     }
 
     .container h2 {
@@ -509,15 +578,23 @@ ul li a {
         font-size: 20px;
     }
 
-    .intSport, .intArt, .intPolitics, .intBusiness {
+    .intSport,
+    .intArt,
+    .intPolitics,
+    .intBusiness {
         font-size: 80px;
     }
 
-    #sport-section, #art-section, #politics-section, #business-section, #result-section, #login-section {
+    #sport-section,
+    #art-section,
+    #politics-section,
+    #business-section,
+    #result-section,
+    #login-section {
         width: 62%;
     }
 
-    #sidebar-btn span{
+    #sidebar-btn span {
         margin-right: -2px;
     }
 
@@ -526,10 +603,11 @@ ul li a {
     }
 
     #login_form .box {
-       width: 60%;
+        width: 60%;
     }
 
-    .box, .leg {
+    .box,
+    .leg {
         font-size: 12px;
     }
 
@@ -537,5 +615,20 @@ ul li a {
         height: 68%;
     }
 
-}
+    .hidden {
+        visibility: hidden;
+    }
 
+    img {
+        width: 180px;
+        height: 120px;
+    }
+
+    .col-container {
+        margin-top: 50px;
+    }
+
+    .col h3 {
+        font-size: 18px;
+    }
+}

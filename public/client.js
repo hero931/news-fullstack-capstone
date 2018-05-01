@@ -34,8 +34,13 @@ $(document).on("click", "#sidebar-close", function (event) {
     $('#sidebar-btn').show();
 });
 
-//Sidebar menu
+//Home section
 $(document).on("click", "#home", function (event) {
+    event.preventDefault();
+    location.reload();
+});
+
+$(document).on("click", ".logo-header", function (event) {
     event.preventDefault();
     location.reload();
 });

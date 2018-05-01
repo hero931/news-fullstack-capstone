@@ -466,85 +466,113 @@ img {
 /* MEDIA QUERIES */
 
 @media only screen and (max-width: 768px) {
-    header {
-        width: 100%;
-        text-align: center;
-    }
-
-    .col-container {
-        margin-top: 18px;
-        margin-bottom: -5px;
-    }
-
-    .col {
-        width: 20%;
-        padding: 10px;
-        height: 85px;
-    }
-
-    .col h3 {
-        font-size: 15px;
-    }
-
-    .col h4 {
-        font-size: 13px;
-    }
-
-    img {
-        width: 90%;
-        height: 90%;
+    * {
+        box-sizing: border-box;
     }
 
     #intro-section {
-        width: 50%;
+        width: 4%;
     }
 
-    .container h1,
-    h2 {
-        margin-top: 32%;
-        font-weight: 100;
-        margin-left: -30px;
-        padding-bottom: 16px;
+    #intro-section .container {
+        margin-top: 80px;
     }
 
     .container h1 {
-        font-size: 110px;
+        font-size: 45px;
+        margin-left: 30px;
+        margin-top: 110px;
+        padding-bottom: 70px;
+        font-weight: 550;
     }
 
     .container h2 {
-        margin-top: -105px;
-        margin-bottom: 5px;
+        font-size: 35px;
+        margin-left: 30px;
+        margin-bottom: 60px;
+        padding-top: 4px;
     }
 
-    p {
-        margin-left: -30px;
+    .container h4 {
+        margin-left: 30px;
+        margin-top: -30px;
+        font-size: 20px;
     }
 
     .intSport,
     .intArt,
     .intPolitics,
     .intBusiness {
-        font-size: 200px;
+        font-size: 80px;
     }
 
-    #sidebar ul {
-        margin-left: -8px;
+    #sport-section,
+    #art-section,
+    #politics-section,
+    #business-section,
+    #result-section,
+    #login-section {
+        width: 77%;
+        padding: 18px;
     }
 
     #sidebar-btn span {
-        margin-right: 5px;
+        margin-right: -2px;
     }
 
     #sidebar-btn {
-        margin-top: 8px;
+        margin-top: 10px;
     }
 
     #login_form .box {
-        margin-top: 4px;
+        width: 60%;
+    }
+
+    .box,
+    .leg {
+        font-size: 12px;
+    }
+
+    #login-section {
+        height: 68%;
+    }
+
+    .hidden {
+        visibility: hidden;
+    }
+
+    img {
+        width: 120px;
+    }
+
+    .col-container {
+        display: table;
+        content: "";
+        clear: both;
+        padding: 10px;
+    }
+
+    .col {
+        display: inline-table;
+        padding: 2px;
+        margin: 14px;
+    }
+
+    .col p {
+        font-size: 14px;
+        margin: 16px;
+    }
+
+    .col h3 {
+        font-size: 18px;
     }
 }
 
 @media only screen and (max-width: 480px) {
+    * {
+        box-sizing: border-box;
+    }
+
     #intro-section {
         width: 4%;
     }
@@ -587,12 +615,8 @@ img {
     #business-section,
     #result-section,
     #login-section {
-        width: 74%;
-        padding: 14px;
-    }
-
-    #sport {
-        margin-bottom: 10px;
+        width: 77%;
+        padding: 18px;
     }
 
     #sidebar-btn span {
@@ -621,23 +645,26 @@ img {
     }
 
     img {
-        width: 180px;
-        height: 120px;
+        width: 120px;
     }
 
     .col-container {
-        display: inline-block;
-        width: 2%;
+        display: table;
+        content: "";
+        clear: both;
+        padding: 10px;
     }
 
     .col {
         display: inline-table;
         padding: 2px;
-        margin-top: 6px;
+        margin: 14px;
+
     }
 
     .col p {
-        font-size: 12px;
+        font-size: 14px;
+        margin: 13px;
     }
 
     .col h3 {
@@ -647,6 +674,10 @@ img {
 
 @media only screen and (max-width: 320px) {
 
+    * {
+        box-sizing: border-box;
+    }
+
     #intro-section {
         width: 4%;
     }
@@ -689,7 +720,8 @@ img {
     #business-section,
     #result-section,
     #login-section {
-        width: 62%;
+        width: 70%;
+        padding: 18px;
     }
 
     #sidebar-btn span {
@@ -718,12 +750,26 @@ img {
     }
 
     img {
-        width: 180px;
-        height: 120px;
+        width: 120px;
     }
 
     .col-container {
-        margin-top: 50px;
+        display: table;
+        content: "";
+        clear: both;
+        padding: 10px;
+    }
+
+    .col {
+        display: inline-table;
+        padding: 2px;
+        margin: 14px;
+
+    }
+
+    .col p {
+        font-size: 14px;
+        margin: 13px;
     }
 
     .col h3 {

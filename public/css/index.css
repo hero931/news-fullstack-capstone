@@ -155,7 +155,6 @@ img {
     width: 100%;
     background-size: cover;
     background-position: center center;
-    height: 100%;
 }
 
 .container {
@@ -178,19 +177,17 @@ img {
 
 .contSport {
     font-family: AvenirNextBold;
-    height: 100vh;
     box-sizing: border-box;
     display: block;
     align-items: center;
     justify-content: center;
-    padding-bottom: 150px;
-    padding-top: 150px;
+    padding-bottom: 20px;
+    padding-top: 20px;
     text-align: center;
 }
 
 .intSport {
-    font-size: 400px;
-    margin-top: 20%;
+    font-size: 100px;
     color: gainsboro;
 }
 
@@ -213,24 +210,21 @@ img {
     background: url(../images/sp.jpg) no-repeat;
     background-size: cover;
     background-position: center center;
-    height: 100%;
 }
 
 .contArt {
     font-family: AvenirNextBold;
-    height: 100vh;
     box-sizing: border-box;
     display: block;
     align-items: center;
     justify-content: center;
-    padding-bottom: 150px;
-    padding-top: 150px;
+    padding-bottom: 20px;
+    padding-top: 20px;
     text-align: center;
 }
 
 .intArt {
-    font-size: 400px;
-    margin-top: 20%;
+    font-size: 100px;
     color: gainsboro;
 }
 
@@ -253,24 +247,21 @@ img {
     background: url(../images/artOne.jpg) no-repeat;
     background-size: cover;
     background-position: center center;
-    height: 100%;
 }
 
 .contPolitics {
     font-family: AvenirNextBold;
-    height: 100vh;
     box-sizing: border-box;
     display: block;
     align-items: center;
     justify-content: center;
-    padding-bottom: 150px;
-    padding-top: 150px;
+    padding-bottom: 20px;
+    padding-top: 20px;
     text-align: center;
 }
 
 .intPolitics {
-    font-size: 400px;
-    margin-top: 20%;
+    font-size: 100px;
     color: gainsboro;
 }
 
@@ -293,24 +284,21 @@ img {
     background: url(../images/politics.jpg) no-repeat;
     background-size: cover;
     background-position: center center;
-    height: 100%;
 }
 
 .contBusiness {
     font-family: AvenirNextBold;
-    height: 100vh;
     box-sizing: border-box;
     display: block;
     align-items: center;
     justify-content: center;
-    padding-bottom: 150px;
-    padding-top: 150px;
+    padding-bottom: 20px;
+    padding-top: 20px;
     text-align: center;
 }
 
 .intBusiness {
-    font-size: 400px;
-    margin-top: 20%;
+    font-size: 100px;
     color: gainsboro;
 }
 
@@ -333,25 +321,6 @@ img {
     background: url(../images/business.jpg) no-repeat;
     background-size: cover;
     background-position: center center;
-    height: 100%;
-}
-
-.contLogin {
-    font-family: AvenirNextBold;
-    height: 100vh;
-    box-sizing: border-box;
-    display: block;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 150px;
-    padding-top: 150px;
-    text-align: center;
-}
-
-.intLogin {
-    font-size: 400px;
-    margin-top: 20%;
-    color: gainsboro;
 }
 
 .login-int-page {
@@ -374,7 +343,6 @@ img {
     width: 100%;
     background-size: cover;
     background-position: center center;
-    height: 100%;
 }
 
 #login .box {
@@ -423,18 +391,6 @@ img {
     background: #cccccc;
 }
 
-.contResult {
-    font-family: AvenirNextBold;
-    height: 100vh;
-    box-sizing: border-box;
-    display: block;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 150px;
-    padding-top: 150px;
-    text-align: center;
-}
-
 #result-section {
     border-image: linear-gradient(to right, grey 0%, red 100%);
     border-image-slice: 2;
@@ -450,7 +406,6 @@ img {
     background: url(../images/result.jpg) no-repeat;
     background-size: cover;
     background-position: center center;
-    height: 100%;
 }
 
 /* MEDIA QUERIES */
@@ -552,6 +507,7 @@ img {
         display: inline-block;
         padding: 2px;
         margin: 14px;
+        width: 32%;
     }
 
     .col p {
@@ -654,6 +610,7 @@ img {
         display: inline-block;
         padding: 2px;
         margin: 14px;
+        width: 48%;
 
     }
 
@@ -756,9 +713,10 @@ img {
     }
 
     .col {
-        display: inline-block;
+        display: block;
         padding: 2px;
         margin: 14px;
+        width: 100%;
 
     }
 

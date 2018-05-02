@@ -83,8 +83,10 @@ function sportDataFromNyt() {
             }
         });
         $(outcome).html(buildTheHtmlOutput);
-    }).fail(function (err) {
-        throw err;
+    }).fail(function (jqXHR, error, errorThrown) {
+        console.log(jqXHR);
+        console.log(error);
+        console.log(errorThrown);
     });
 }
 
@@ -125,8 +127,10 @@ function artDataFromNyt() {
             }
         });
         $(outcome).html(buildTheHtmlOutput);
-    }).fail(function (err) {
-        throw err;
+    }).fail(function (jqXHR, error, errorThrown) {
+        console.log(jqXHR);
+        console.log(error);
+        console.log(errorThrown);
     });
 }
 
@@ -167,8 +171,10 @@ function politicsDataFromNyt() {
             }
         });
         $(outcome).html(buildTheHtmlOutput);
-    }).fail(function (err) {
-        throw err;
+    }).fail(function (jqXHR, error, errorThrown) {
+        console.log(jqXHR);
+        console.log(error);
+        console.log(errorThrown);
     });
 }
 
@@ -209,8 +215,10 @@ function businessDataFromNyt() {
             }
         });
         $(outcome).html(buildTheHtmlOutput);
-    }).fail(function (err) {
-        throw err;
+    }).fail(function (jqXHR, error, errorThrown) {
+        console.log(jqXHR);
+        console.log(error);
+        console.log(errorThrown);
     });
 }
 
@@ -233,15 +241,17 @@ function searchDataFromNyt() {
         var testIt = year + " " + month + " " + day;
 
         const outcome = $('#result-section .col-container');
-        var url = "https://api.nytimes.com/svc/topstories/v2/articlesearch.json";
+        var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
         url += '?' + $.param({
             'api-key': "1b45aab26c4f43869d611a4c1ff2c95d",
             'q': "news",
-            'begin_date': "testIt"
+            'begin_date': "20121203"
         });
         $.ajax({
             url: url,
             method: 'GET',
+            dataType: "json",
+            type: "GET"
 
         }).done(function (dataOutput) {
             console.log(dataOutput);
@@ -262,8 +272,10 @@ function searchDataFromNyt() {
                 }
             });
             $(outcome).html(buildTheHtmlOutput);
-        }).fail(function (err) {
-            throw err;
+        }).fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
         });
     });
 }

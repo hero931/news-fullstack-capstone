@@ -226,21 +226,18 @@ function searchDataFromNyt() {
     $('#login_form').submit(function () {
         event.preventDefault();
 
-        let month_name = new Array("January", "February", "March",
-            "April", "May", "June", "July", "August", "September",
-            "October", "November", "December");
-        let date = new Date();
-        let curr_month = date.getMonth();
-        let curr_year = date.getFullYear();
-        let query = $("#loginDate");
-        query.value = curr_year + "," + month_name[curr_month];
+        var test = new Date($("#loginDate").val());
+        var day = test.getDay();
+        var month = test.getMonth() + 1;
+        var year = test.getFullYear();
+        var testIt = year + " " + month + " " + day;
 
         const outcome = $('#result-section .col-container');
         var url = "https://api.nytimes.com/svc/topstories/v2/articlesearch.json";
         url += '?' + $.param({
             'api-key': "1b45aab26c4f43869d611a4c1ff2c95d",
             'q': "news",
-            'begin_date': 'query'
+            'begin_date': "testIt"
         });
         $.ajax({
             url: url,

@@ -55,7 +55,7 @@ $(document).on("click", "#sports", function (event) {
 
 //Sport results
 function sportDataFromNyt() {
-    const outcome = $('#sport-section .col-container');
+    let outcome = $('#sport-section .col-container');
     var url = "https://api.nytimes.com/svc/topstories/v2/sports.json";
     url += '?' + $.param({
         'api-key': "1b45aab26c4f43869d611a4c1ff2c95d"
@@ -63,6 +63,8 @@ function sportDataFromNyt() {
     $.ajax({
         url: url,
         method: 'GET',
+        dataType: "json",
+        type: "GET"
 
     }).done(function (dataOutput) {
         console.log(dataOutput);
@@ -72,11 +74,16 @@ function sportDataFromNyt() {
         $.each(dataOutput.results, function (dataArrayKey, dataArrayValue) {
             count++;
             if (count <= 16) {
-                console.log(count);
+                //console.log(count);
                 buildTheHtmlOutput += '<div class="col">';
                 buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
-                buildTheHtmlOutput += "<a href='" + dataArrayValue.url + "' target='_blank'>";
-                buildTheHtmlOutput += '<img src="' + dataArrayValue.multimedia[0].url + '">';
+                buildTheHtmlOutput += "<a href='" + dataArrayValue.web_url + "' target='_blank'>";
+                if (dataArrayValue.multimedia.length != 0) {
+                    buildTheHtmlOutput += '<img src="' + dataArrayValue.multimedia[0].url + '">';
+                } else {
+                    buildTheHtmlOutput += '<img src="images/no-image.png">';
+                }
+
                 buildTheHtmlOutput += "</a>";
                 //buildTheHtmlOutput += '<p class="hidden">' + dataArrayValue.abstract + '</p>';
                 buildTheHtmlOutput += '</div>';
@@ -99,7 +106,7 @@ $(document).on("click", "#arts", function (event) {
 
 //Arts results
 function artDataFromNyt() {
-    const outcome = $('#art-section .col-container');
+    let outcome = $('#art-section .col-container');
     var url = "https://api.nytimes.com/svc/topstories/v2/arts.json";
     url += '?' + $.param({
         'api-key': "1b45aab26c4f43869d611a4c1ff2c95d"
@@ -107,6 +114,8 @@ function artDataFromNyt() {
     $.ajax({
         url: url,
         method: 'GET',
+        dataType: "json",
+        type: "GET"
 
     }).done(function (dataOutput) {
         console.log(dataOutput);
@@ -116,11 +125,16 @@ function artDataFromNyt() {
         $.each(dataOutput.results, function (dataArrayKey, dataArrayValue) {
             count++;
             if (count <= 16) {
-                console.log(count);
+                //console.log(count);
                 buildTheHtmlOutput += '<div class="col">';
                 buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
-                buildTheHtmlOutput += "<a href='" + dataArrayValue.url + "' target='_blank'>";
-                buildTheHtmlOutput += '<img src="' + dataArrayValue.multimedia[0].url + '">';
+                buildTheHtmlOutput += "<a href='" + dataArrayValue.web_url + "' target='_blank'>";
+                if (dataArrayValue.multimedia.length != 0) {
+                    buildTheHtmlOutput += '<img src="' + dataArrayValue.multimedia[0].url + '">';
+                } else {
+                    buildTheHtmlOutput += '<img src="images/no-image.png">';
+                }
+
                 buildTheHtmlOutput += "</a>";
                 //buildTheHtmlOutput += '<p class="hidden">' + dataArrayValue.abstract + '</p>';
                 buildTheHtmlOutput += '</div>';
@@ -143,7 +157,7 @@ $(document).on("click", "#politics", function (event) {
 
 //Politics results
 function politicsDataFromNyt() {
-    const outcome = $('#politics-section .col-container');
+    let outcome = $('#politics-section .col-container');
     var url = "https://api.nytimes.com/svc/topstories/v2/politics.json";
     url += '?' + $.param({
         'api-key': "1b45aab26c4f43869d611a4c1ff2c95d"
@@ -151,20 +165,27 @@ function politicsDataFromNyt() {
     $.ajax({
         url: url,
         method: 'GET',
+        dataType: "json",
+        type: "GET"
 
     }).done(function (dataOutput) {
-        console.log(dataOutput);
+        //console.log(dataOutput);
         outcome.html("");
         let count = 0;
         let buildTheHtmlOutput = "";
         $.each(dataOutput.results, function (dataArrayKey, dataArrayValue) {
             count++;
             if (count <= 16) {
-                console.log(count);
+                //console.log(count);
                 buildTheHtmlOutput += '<div class="col">';
                 buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
-                buildTheHtmlOutput += "<a href='" + dataArrayValue.url + "' target='_blank'>";
-                buildTheHtmlOutput += '<img src="' + dataArrayValue.multimedia[0].url + '">';
+                buildTheHtmlOutput += "<a href='" + dataArrayValue.web_url + "' target='_blank'>";
+                if (dataArrayValue.multimedia.length != 0) {
+                    buildTheHtmlOutput += '<img src="' + dataArrayValue.multimedia[0].url + '">';
+                } else {
+                    buildTheHtmlOutput += '<img src="images/no-image.png">';
+                }
+
                 buildTheHtmlOutput += "</a>";
                 //buildTheHtmlOutput += '<p class="hidden">' + dataArrayValue.abstract + '</p>';
                 buildTheHtmlOutput += '</div>';
@@ -187,7 +208,7 @@ $(document).on("click", "#business", function (event) {
 
 //Business results
 function businessDataFromNyt() {
-    const outcome = $('#business-section .col-container');
+    let outcome = $('#business-section .col-container');
     var url = "https://api.nytimes.com/svc/topstories/v2/business.json";
     url += '?' + $.param({
         'api-key': "1b45aab26c4f43869d611a4c1ff2c95d"
@@ -195,6 +216,8 @@ function businessDataFromNyt() {
     $.ajax({
         url: url,
         method: 'GET',
+        dataType: "json",
+        type: "GET"
 
     }).done(function (dataOutput) {
         console.log(dataOutput);
@@ -204,11 +227,16 @@ function businessDataFromNyt() {
         $.each(dataOutput.results, function (dataArrayKey, dataArrayValue) {
             count++;
             if (count <= 16) {
-                console.log(count);
+                //console.log(count);
                 buildTheHtmlOutput += '<div class="col">';
                 buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
-                buildTheHtmlOutput += "<a href='" + dataArrayValue.url + "' target='_blank'>";
-                buildTheHtmlOutput += '<img src="' + dataArrayValue.multimedia[0].url + '">';
+                buildTheHtmlOutput += "<a href='" + dataArrayValue.web_url + "' target='_blank'>";
+                if (dataArrayValue.multimedia.length != 0) {
+                    buildTheHtmlOutput += '<img src="' + dataArrayValue.multimedia[0].url + '">';
+                } else {
+                    buildTheHtmlOutput += '<img src="images/no-image.png">';
+                }
+
                 buildTheHtmlOutput += "</a>";
                 //buildTheHtmlOutput += '<p class="hidden">' + dataArrayValue.abstract + '</p>';
                 buildTheHtmlOutput += '</div>';
@@ -234,18 +262,23 @@ function searchDataFromNyt() {
     $('#login_form').submit(function () {
         event.preventDefault();
 
-        var test = new Date($("#loginDate").val());
-        var day = test.getDay();
-        var month = test.getMonth() + 1;
-        var year = test.getFullYear();
-        var testIt = year + " " + month + " " + day;
+        //var test = new Date($("#loginDate").val());
+        var test = $("#loginDate").val();
+        console.log(test);
+        var repleacedDateString = test.replace(/-/gi, "");
+        console.log(repleacedDateString);
+        //        var day = test.getDay();
+        //        var month = test.getMonth() + 1;
+        //        var year = test.getFullYear();
+        //        var testIt = year + " " + month + " " + day;
 
         const outcome = $('#result-section .col-container');
         var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
         url += '?' + $.param({
             'api-key': "1b45aab26c4f43869d611a4c1ff2c95d",
             'q': "news",
-            'begin_date': "20121203"
+            'end_date': repleacedDateString,
+            'sort': "newest"
         });
         $.ajax({
             url: url,
@@ -258,14 +291,19 @@ function searchDataFromNyt() {
             outcome.html("");
             let count = 0;
             let buildTheHtmlOutput = "";
-            $.each(dataOutput.results, function (dataArrayKey, dataArrayValue) {
+            $.each(dataOutput.response.docs, function (dataArrayKey, dataArrayValue) {
                 count++;
-                if (count <= 16) {
-                    console.log(count);
+                if (count <= 10) {
+                    //console.log(count);
                     buildTheHtmlOutput += '<div class="col">';
-                    buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
-                    buildTheHtmlOutput += "<a href='" + dataArrayValue.url + "' target='_blank'>";
-                    buildTheHtmlOutput += '<img src="' + dataArrayValue.multimedia[0].url + '">';
+                    buildTheHtmlOutput += '<p>' + dataArrayValue.snippet + '</p><hr>';
+                    buildTheHtmlOutput += "<a href='" + dataArrayValue.web_url + "' target='_blank'>";
+                    if (dataArrayValue.multimedia.length != 0) {
+                        buildTheHtmlOutput += '<img src="http://www.nytimes.com/' + dataArrayValue.multimedia[0].url + '">';
+                    } else {
+                        buildTheHtmlOutput += '<img src="images/no-image.png">';
+                    }
+
                     buildTheHtmlOutput += "</a>";
                     //buildTheHtmlOutput += '<p class="hidden">' + dataArrayValue.abstract + '</p>';
                     buildTheHtmlOutput += '</div>';

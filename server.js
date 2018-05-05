@@ -55,91 +55,29 @@ function closeServer() {
 }
 
 // ---------------USER ENDPOINTS-------------------------------------
-// POST -----------------------------------
-// creating a new user
-app.post('/users/create', (req, res) => {
-    let userName = req.body.userName;
-    userName = userName.trim();
-    let firstName = req.body.firstName;
-    firstName = req.body.firstName;
-    let password = req.body.password;
-    password = password.trim();
-    bcrypt.genSalt(10, (err, salt) => {
+// POST
+app.post('/add-to-sport-list/', function (req, res) {
+
+
+    col - container.create({
+        title: req.body.titleName,
+        url: req.body.image,
+        status: req.body.status
+    }, function (err, item) {
+        console.log(item);
         if (err) {
             return res.status(500).json({
-                message: 'Internal server error'
+                message: 'Internal Server Error'
             });
         }
-
-        bcrypt.hash(password, salt, (err, hash) => {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Internal server error'
-                });
-            }
-
-            User.create({
-                userName,
-                firstName,
-                password: hash,
-            }, (err, item) => {
-                if (err) {
-                    return res.status(500).json({
-                        message: 'Internal Server Error'
-                    });
-                }
-                if (item) {
-                    console.log(`User \`${userName}\` created.`);
-                    return res.json(item);
-                }
-            });
-        });
+        res.status(201).json(item);
     });
 });
 
-// signing in a user
-app.post('/users/signin', function (req, res) {
-    const user = req.body.username;
-    const pw = req.body.password;
-    console.log(pw, user);
-    User
-        .findOne({
-            userName: req.body.username
-        }, function (err, items) {
-            if (err) {
-                return res.status(500).json({
-                    message: "Internal server error"
-                });
-            }
-            if (!items) {
-                // bad username
-                return res.status(401).json({
-                    message: "Not found!"
-                });
-            } else {
-                items.validatePassword(req.body.password, function (err, isValid) {
-                    if (err) {
-                        console.log('There was an error validating the password.');
-                    }
-                    if (!isValid) {
-                        return res.status(401).json({
-                            message: "Not found"
-                        });
-                    } else {
-                        var logInTime = new Date();
-                        console.log("User logged in: " + req.body.username + ' at ' + logInTime);
-                        return res.json(items);
-                    }
-                });
-            };
-        });
-
-});
 
 
-// POST
-// creating a new nutrition
-app.post('/nutrition/create', (req, res) => {
+
+/*app.post('/nutrition/create', (req, res) => {
 
     let nutritionText = req.body.nutritionTextarea;
     let username = req.body.username;
@@ -295,7 +233,7 @@ app.delete('/progress/:id', function (req, res) {
             message: 'Internal Server Error'
         });
     });
-});
+});*/
 
 
 
@@ -310,3 +248,5 @@ app.use('*', (req, res) => {
 exports.app = app;
 exports.runServer = runServer;
 exports.closeServer = closeServer;
+
+///////////////////////////////////////////

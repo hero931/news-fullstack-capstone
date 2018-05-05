@@ -212,6 +212,12 @@ img {
     background-position: center center;
 }
 
+.sportForm {
+    width: 250px;
+    border: 1px solid red;
+
+}
+
 .contArt {
     font-family: AvenirNextBold;
     box-sizing: border-box;

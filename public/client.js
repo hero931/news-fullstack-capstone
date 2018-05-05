@@ -76,6 +76,17 @@ function sportDataFromNyt() {
             if (count <= 16) {
                 //console.log(count);
                 buildTheHtmlOutput += '<div class="col">';
+
+
+                buildTheHtmlOutput += '<form class="addToSportList">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToSportListTitle" value="' + dataArrayValue.title + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToSportListUrl" value="' + dataArrayValue.web_url + '">';
+                buildTheHtmlOutput += '<button type="submit" class="addToSportListButton" value="">';
+                buildTheHtmlOutput += '<i class="fa fa-plus-square-o" aria-hidden="true"></i>';
+                buildTheHtmlOutput += '</button>';
+                buildTheHtmlOutput += '</form>';
+
+
                 buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
                 buildTheHtmlOutput += "<a href='" + dataArrayValue.web_url + "' target='_blank'>";
                 if (dataArrayValue.multimedia.length != 0) {
@@ -96,6 +107,77 @@ function sportDataFromNyt() {
         console.log(errorThrown);
     });
 }
+
+//Add article to sport favorite list
+$(document).on('submit', '.addToSportList', function (event) {
+    event.preventDefault();
+    var titleName = $(this).parent().find('.addToSportListTitle').val();
+    var urlName = $(this).parent().find('.addToSportListUrl').val();
+
+    var sportObject = {
+        'title': titleName,
+        'url': urlName
+
+    };
+
+    $.ajax({
+            method: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(sportObject),
+            url: '/add-to-sport-list/',
+        })
+        .done(function (result) {
+            console.log(result);
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        });
+});
+
+//Populate sport favorite list
+function populateSportList() {
+    let outcome = $('#sport-section .col-container');
+
+    $.ajax({
+            type: 'GET',
+            url: '/populate-sport-list/',
+            dataType: 'json',
+        })
+        .done(function (dataOutput) {
+            outcome.html("");
+            let buildTheHtmlOutput = "";
+
+            $.each(dataOutput.results, function (dataArrayKey, dataArrayValue) {
+
+                buildTheHtmlOutput += '<div class="col">';
+                buildTheHtmlOutput += '<h2>Sport Favorite List</h2>';
+                buildTheHtmlOutput += '<p>Here you can see your saved favorite sport list</p>';
+                buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
+                buildTheHtmlOutput += "<a href='" + dataArrayValue.web_url + "' target='_blank'>";
+                if (dataArrayValue.multimedia.length != 0) {
+                    buildTheHtmlOutput += '<img src="' + dataArrayValue.multimedia[0].url + '">';
+                } else {
+                    buildTheHtmlOutput += '<img src="images/no-image.png">';
+                }
+
+                buildTheHtmlOutput += "</a>";
+                buildTheHtmlOutput += '</div>';
+
+            });
+            $(outcome).html(buildTheHtmlOutput);
+
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        });
+}
+
+
 
 //Arts section
 $(document).on("click", "#arts", function (event) {
@@ -255,13 +337,13 @@ $(document).on("click", "#search", function (event) {
     event.preventDefault();
     $('.hide-me').hide();
     $('.login-page').show();
+    $('#result-section').addClass('hide-me');
 });
 
 //Search for a specific date
 function searchDataFromNyt() {
     $('#login_form').submit(function () {
         event.preventDefault();
-
         //var test = new Date($("#loginDate").val());
         var test = $("#loginDate").val();
         console.log(test);
@@ -298,6 +380,7 @@ function searchDataFromNyt() {
                     buildTheHtmlOutput += '<div class="col">';
                     buildTheHtmlOutput += '<p>' + dataArrayValue.snippet + '</p><hr>';
                     buildTheHtmlOutput += "<a href='" + dataArrayValue.web_url + "' target='_blank'>";
+
                     if (dataArrayValue.multimedia.length != 0) {
                         buildTheHtmlOutput += '<img src="http://www.nytimes.com/' + dataArrayValue.multimedia[0].url + '">';
                     } else {
@@ -305,7 +388,6 @@ function searchDataFromNyt() {
                     }
 
                     buildTheHtmlOutput += "</a>";
-                    //buildTheHtmlOutput += '<p class="hidden">' + dataArrayValue.abstract + '</p>';
                     buildTheHtmlOutput += '</div>';
                 }
             });

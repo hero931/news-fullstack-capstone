@@ -1,4 +1,5 @@
 const User = require('./models/user');
+const Entry = require('./models/entry');
 const Nutrition = require('./models/nutrition');
 const Workout = require('./models/workout');
 const Progress = require('./models/progress');
@@ -56,24 +57,61 @@ function closeServer() {
 
 // ---------------USER ENDPOINTS-------------------------------------
 // POST
-app.post('/add-to-sport-list/', function (req, res) {
+app.post('/add-to-sport-list', (req, res) => {
 
-
-    col - container.create({
-        title: req.body.titleName,
-        url: req.body.image,
-        status: req.body.status
-    }, function (err, item) {
-        console.log(item);
+    let title = req.body.title;
+    let url = req.body.url;
+    let image = req.body.image;
+    Entry.create({
+        title,
+        url,
+        image,
+        category: 'sport'
+    }, (err, item) => {
         if (err) {
             return res.status(500).json({
                 message: 'Internal Server Error'
             });
         }
-        res.status(201).json(item);
+        if (item) {
+            console.log(`Sport result added.`);
+            return res.json(item);
+        }
     });
 });
 
+//GET
+app.get('/populate-sport-list', function (req, res) {
+    Entry
+        .find({
+            category: 'sport'
+
+        })
+        .then(function (items) {
+            res.json({
+                items
+            });
+        })
+        .catch(function (err) {
+            console.error(err);
+            res.status(500).json({
+                message: 'Internal server error'
+            });
+        });
+});
+
+//DELETE
+app.delete('/delete-from-bucket-list/:bucketListId', function (req, res) {
+
+    sport.findByIdAndRemove(req.params.sportListId, function (err, items) {
+        if (err)
+            return res.status(404).json({
+                message: 'Item not found.'
+            });
+
+        res.status(201).json(items);
+    });
+});
 
 
 

@@ -80,7 +80,13 @@ function sportDataFromNyt() {
 
                 buildTheHtmlOutput += '<form class="addToSportList">';
                 buildTheHtmlOutput += '<input type="hidden" class="addToSportListTitle" value="' + dataArrayValue.title + '">';
-                buildTheHtmlOutput += '<input type="hidden" class="addToSportListUrl" value="' + dataArrayValue.web_url + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToSportListUrl" value="' + dataArrayValue.url + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="' + dataArrayValue.multimedia[0].url + '">';
+                if (dataArrayValue.multimedia.length != 0) {
+                    buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="' + dataArrayValue.multimedia[0].url + '">';
+                } else {
+                    buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="images/no-image.png">';
+                }
                 buildTheHtmlOutput += '<button type="submit" class="addToSportListButton" value="">';
                 buildTheHtmlOutput += '<i class="fa fa-plus-square-o" aria-hidden="true"></i>';
                 buildTheHtmlOutput += '</button>';
@@ -88,7 +94,7 @@ function sportDataFromNyt() {
 
 
                 buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
-                buildTheHtmlOutput += "<a href='" + dataArrayValue.web_url + "' target='_blank'>";
+                buildTheHtmlOutput += "<a href='" + dataArrayValue.url + "' target='_blank'>";
                 if (dataArrayValue.multimedia.length != 0) {
                     buildTheHtmlOutput += '<img src="' + dataArrayValue.multimedia[0].url + '">';
                 } else {
@@ -113,11 +119,12 @@ $(document).on('submit', '.addToSportList', function (event) {
     event.preventDefault();
     var titleName = $(this).parent().find('.addToSportListTitle').val();
     var urlName = $(this).parent().find('.addToSportListUrl').val();
-
+    var image = $(this).parent().find('.addToSportListImage').val();
+    console.log(titleName, urlName);
     var sportObject = {
         'title': titleName,
-        'url': urlName
-
+        'url': urlName,
+        'image': image
     };
 
     $.ajax({
@@ -129,6 +136,7 @@ $(document).on('submit', '.addToSportList', function (event) {
         })
         .done(function (result) {
             console.log(result);
+            populateSportList();
         })
         .fail(function (jqXHR, error, errorThrown) {
             console.log(jqXHR);
@@ -137,9 +145,11 @@ $(document).on('submit', '.addToSportList', function (event) {
         });
 });
 
+
+
 //Populate sport favorite list
 function populateSportList() {
-    let outcome = $('#sport-section .col-container');
+    let outcome = $('#result-section .col-favorite');
 
     $.ajax({
             type: 'GET',
@@ -147,6 +157,7 @@ function populateSportList() {
             dataType: 'json',
         })
         .done(function (dataOutput) {
+            console.log(dataOutput);
             outcome.html("");
             let buildTheHtmlOutput = "";
 
@@ -154,7 +165,7 @@ function populateSportList() {
 
                 buildTheHtmlOutput += '<div class="col">';
                 buildTheHtmlOutput += '<h2>Sport Favorite List</h2>';
-                buildTheHtmlOutput += '<p>Here you can see your saved favorite sport list</p>';
+                buildTheHtmlOutput += '<p>Here you can see your saved favorite sport list</p><hr>';
                 buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
                 buildTheHtmlOutput += "<a href='" + dataArrayValue.web_url + "' target='_blank'>";
                 if (dataArrayValue.multimedia.length != 0) {

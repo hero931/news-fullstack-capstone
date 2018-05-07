@@ -1,21 +1,10 @@
 /*Define variables objects and functions*/
 $(document).ready(function () {
+    populateFavoriteList();
     sportDataFromNyt();
-});
-
-$(document).ready(function () {
     artDataFromNyt();
-});
-
-$(document).ready(function () {
     politicsDataFromNyt();
-});
-
-$(document).ready(function () {
     businessDataFromNyt();
-});
-
-$(document).ready(function () {
     searchDataFromNyt();
 });
 
@@ -74,10 +63,7 @@ function sportDataFromNyt() {
         $.each(dataOutput.results, function (dataArrayKey, dataArrayValue) {
             count++;
             if (count <= 16) {
-                //console.log(count);
                 buildTheHtmlOutput += '<div class="col">';
-
-
                 buildTheHtmlOutput += '<form class="addToSportList">';
                 buildTheHtmlOutput += '<input type="hidden" class="addToSportListTitle" value="' + dataArrayValue.title + '">';
                 buildTheHtmlOutput += '<input type="hidden" class="addToSportListUrl" value="' + dataArrayValue.url + '">';
@@ -91,8 +77,6 @@ function sportDataFromNyt() {
                 buildTheHtmlOutput += '<i class="fa fa-plus-square-o" aria-hidden="true"></i>';
                 buildTheHtmlOutput += '</button>';
                 buildTheHtmlOutput += '</form>';
-
-
                 buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
                 buildTheHtmlOutput += "<a href='" + dataArrayValue.url + "' target='_blank'>";
                 if (dataArrayValue.multimedia.length != 0) {
@@ -102,7 +86,6 @@ function sportDataFromNyt() {
                 }
 
                 buildTheHtmlOutput += "</a>";
-                //buildTheHtmlOutput += '<p class="hidden">' + dataArrayValue.abstract + '</p>';
                 buildTheHtmlOutput += '</div>';
             }
         });
@@ -120,7 +103,7 @@ $(document).on('submit', '.addToSportList', function (event) {
     var titleName = $(this).parent().find('.addToSportListTitle').val();
     var urlName = $(this).parent().find('.addToSportListUrl').val();
     var image = $(this).parent().find('.addToSportListImage').val();
-    console.log(titleName, urlName);
+    console.log(titleName, urlName, image);
     var sportObject = {
         'title': titleName,
         'url': urlName,
@@ -136,7 +119,7 @@ $(document).on('submit', '.addToSportList', function (event) {
         })
         .done(function (result) {
             console.log(result);
-            populateSportList();
+            populateFavoriteList();
         })
         .fail(function (jqXHR, error, errorThrown) {
             console.log(jqXHR);
@@ -146,38 +129,43 @@ $(document).on('submit', '.addToSportList', function (event) {
 });
 
 
-
 //Populate sport favorite list
-function populateSportList() {
-    let outcome = $('#result-section .col-favorite');
-
+function populateFavoriteList() {
+    let outcome = $('#result-section-favorites .col-favorite');
     $.ajax({
             type: 'GET',
-            url: '/populate-sport-list/',
+            url: '/populate-favorites-list',
             dataType: 'json',
+            category: 'sport'
+
         })
         .done(function (dataOutput) {
             console.log(dataOutput);
             outcome.html("");
             let buildTheHtmlOutput = "";
-
-            $.each(dataOutput.results, function (dataArrayKey, dataArrayValue) {
+            $.each(dataOutput.items, function (dataArrayKey, dataArrayValue) {
 
                 buildTheHtmlOutput += '<div class="col">';
-                buildTheHtmlOutput += '<h2>Sport Favorite List</h2>';
-                buildTheHtmlOutput += '<p>Here you can see your saved favorite sport list</p><hr>';
+
+                buildTheHtmlOutput += '<form class="deleteFavoritesListForm">';
+                buildTheHtmlOutput += '<input type="hidden" class="deleteFavoritesListId" value="' + dataArrayValue._id + '" >';
+                buildTheHtmlOutput += '<button type="submit" class="deleteItemButton" value="">';
+
+                buildTheHtmlOutput += '<i class="fa fa-minus-square-o" aria-hidden="true"></i>';
+                buildTheHtmlOutput += '</button>';
+                buildTheHtmlOutput += '</form>';
+
                 buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
-                buildTheHtmlOutput += "<a href='" + dataArrayValue.web_url + "' target='_blank'>";
-                if (dataArrayValue.multimedia.length != 0) {
-                    buildTheHtmlOutput += '<img src="' + dataArrayValue.multimedia[0].url + '">';
-                } else {
-                    buildTheHtmlOutput += '<img src="images/no-image.png">';
-                }
+                buildTheHtmlOutput += "<a href='" + dataArrayValue.url + "' target='_blank'>";
+
+                buildTheHtmlOutput += '<img src="' + dataArrayValue.image + '">';
+
 
                 buildTheHtmlOutput += "</a>";
                 buildTheHtmlOutput += '</div>';
 
             });
+            $('.result-favorite').show();
             $(outcome).html(buildTheHtmlOutput);
 
         })
@@ -187,6 +175,27 @@ function populateSportList() {
             console.log(errorThrown);
         });
 }
+
+////User will be able to remove item from list
+$(document).on('submit', '.deleteFavoritesListForm', function (event) {
+    event.preventDefault();
+    var itemIdToDelete = $(this).parent().find('.deleteFavoritesListId').val();
+    $.ajax({
+            method: 'DELETE',
+            dataType: 'json',
+            contentType: 'application/json',
+            url: '/delete-from-favorites-list/' + itemIdToDelete,
+        })
+        .done(function (result) {
+            populateFavoriteList();
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+            sweetAlert('Oops...', 'Please try again', 'error');
+        });
+});
 
 
 
@@ -355,16 +364,10 @@ $(document).on("click", "#search", function (event) {
 function searchDataFromNyt() {
     $('#login_form').submit(function () {
         event.preventDefault();
-        //var test = new Date($("#loginDate").val());
         var test = $("#loginDate").val();
         console.log(test);
         var repleacedDateString = test.replace(/-/gi, "");
         console.log(repleacedDateString);
-        //        var day = test.getDay();
-        //        var month = test.getMonth() + 1;
-        //        var year = test.getFullYear();
-        //        var testIt = year + " " + month + " " + day;
-
         const outcome = $('#result-section .col-container');
         var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
         url += '?' + $.param({

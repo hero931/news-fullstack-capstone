@@ -81,10 +81,9 @@ app.post('/add-to-sport-list', (req, res) => {
 });
 
 //GET
-app.get('/populate-sport-list', function (req, res) {
+app.get('/populate-favorites-list', function (req, res) {
     Entry
         .find({
-            category: 'sport'
 
         })
         .then(function (items) {
@@ -101,9 +100,9 @@ app.get('/populate-sport-list', function (req, res) {
 });
 
 //DELETE
-app.delete('/delete-from-bucket-list/:bucketListId', function (req, res) {
+app.delete('/delete-from-favorites-list/:itemId', function (req, res) {
 
-    sport.findByIdAndRemove(req.params.sportListId, function (err, items) {
+    Entry.findByIdAndRemove(req.params.itemId, function (err, items) {
         if (err)
             return res.status(404).json({
                 message: 'Item not found.'

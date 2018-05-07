@@ -56,7 +56,7 @@ function closeServer() {
 }
 
 // ---------------USER ENDPOINTS-------------------------------------
-// POST
+// POST SPORT
 app.post('/add-to-sport-list', (req, res) => {
 
     let title = req.body.title;
@@ -75,6 +75,78 @@ app.post('/add-to-sport-list', (req, res) => {
         }
         if (item) {
             console.log(`Sport result added.`);
+            return res.json(item);
+        }
+    });
+});
+
+// POST ARTS
+app.post('/add-to-arts-list', (req, res) => {
+
+    let title = req.body.title;
+    let url = req.body.url;
+    let image = req.body.image;
+    Entry.create({
+        title,
+        url,
+        image,
+        category: 'arts'
+    }, (err, item) => {
+        if (err) {
+            return res.status(500).json({
+                message: 'Internal Server Error'
+            });
+        }
+        if (item) {
+            console.log(`Arts result added.`);
+            return res.json(item);
+        }
+    });
+});
+
+// POST POLITICS
+app.post('/add-to-politics-list', (req, res) => {
+
+    let title = req.body.title;
+    let url = req.body.url;
+    let image = req.body.image;
+    Entry.create({
+        title,
+        url,
+        image,
+        category: 'politics'
+    }, (err, item) => {
+        if (err) {
+            return res.status(500).json({
+                message: 'Internal Server Error'
+            });
+        }
+        if (item) {
+            console.log(`Politics result added.`);
+            return res.json(item);
+        }
+    });
+});
+
+// POST BUSINESS
+app.post('/add-to-business-list', (req, res) => {
+
+    let title = req.body.title;
+    let url = req.body.url;
+    let image = req.body.image;
+    Entry.create({
+        title,
+        url,
+        image,
+        category: 'business'
+    }, (err, item) => {
+        if (err) {
+            return res.status(500).json({
+                message: 'Internal Server Error'
+            });
+        }
+        if (item) {
+            console.log(`Business result added.`);
             return res.json(item);
         }
     });
@@ -111,166 +183,6 @@ app.delete('/delete-from-favorites-list/:itemId', function (req, res) {
         res.status(201).json(items);
     });
 });
-
-
-
-/*app.post('/nutrition/create', (req, res) => {
-
-    let nutritionText = req.body.nutritionTextarea;
-    let username = req.body.username;
-    Nutrition.create({
-        username,
-        nutritionText,
-    }, (err, item) => {
-        if (err) {
-            return res.status(500).json({
-                message: 'Internal Server Error'
-            });
-        }
-        if (item) {
-            console.log(`Nutrition added.`);
-            return res.json(item);
-        }
-    });
-});
-
-//GET
-app.get('/nutrition/get/:user', function (req, res) {
-    Nutrition
-        .find({
-            username: req.params.user
-        })
-        .then(function (nutritions) {
-            res.json({
-                nutritions
-            });
-        })
-        .catch(function (err) {
-            console.error(err);
-            res.status(500).json({
-                message: 'Internal server error'
-            });
-        });
-});
-
-//POST
-//creating a new workout
-app.post('/workout/create', (req, res) => {
-
-    let workoutText = req.body.workoutTextarea;
-    let username = req.body.username;
-    Workout.create({
-        username,
-        workoutText,
-    }, (err, item) => {
-        if (err) {
-            return res.status(500).json({
-                message: 'Internal Server Error'
-            });
-        }
-        if (item) {
-            console.log(`Workout added.`);
-            return res.json(item);
-        }
-    });
-});
-
-//GET
-app.get('/workout/get/:user', function (req, res) {
-    Workout
-        .find({
-            username: req.params.user
-        })
-        .then(function (workouts) {
-            res.json({
-                workouts
-            });
-        })
-        .catch(function (err) {
-            console.error(err);
-            res.status(500).json({
-                message: 'Internal server error'
-            });
-        });
-});
-
-// POST
-// creating a new progress
-app.post('/progress/create', (req, res) => {
-
-    let progressText = req.body.progressTextarea;
-    let username = req.body.username;
-    Progress.create({
-        username,
-        progressText,
-    }, (err, item) => {
-        if (err) {
-            return res.status(500).json({
-                message: 'Internal Server Error'
-            });
-        }
-        if (item) {
-            console.log(`Progress added.`);
-            return res.json(item);
-        }
-    });
-});
-
-//GET
-app.get('/progress/get/:user', function (req, res) {
-    Progress
-        .find({
-            username: req.params.user
-        })
-        .then(function (progresses) {
-            res.json({
-                progresses
-            });
-        })
-        .catch(function (err) {
-            console.error(err);
-            res.status(500).json({
-                message: 'Internal server error'
-            });
-        });
-});
-
-
-// DELETE ----------------------------------------
-// deleting a nutrition by id
-app.delete('/nutrition/:id', function (req, res) {
-    Nutrition.findByIdAndRemove(req.params.id).exec().then(function (nutrition) {
-        return res.status(204).end();
-    }).catch(function (err) {
-        return res.status(500).json({
-            message: 'Internal Server Error'
-        });
-    });
-});
-
-// DELETE ----------------------------------------
-// deleting a workout by id
-app.delete('/workout/:id', function (req, res) {
-    Workout.findByIdAndRemove(req.params.id).exec().then(function (workout) {
-        return res.status(204).end();
-    }).catch(function (err) {
-        return res.status(500).json({
-            message: 'Internal Server Error'
-        });
-    });
-});
-
-// DELETE ----------------------------------------
-// deleting a progress by id
-app.delete('/progress/:id', function (req, res) {
-    Progress.findByIdAndRemove(req.params.id).exec().then(function (progress) {
-        return res.status(204).end();
-    }).catch(function (err) {
-        return res.status(500).json({
-            message: 'Internal Server Error'
-        });
-    });
-});*/
 
 
 

@@ -425,6 +425,31 @@ img {
     text-align: center;
 }
 
+#result-section-favorites h2 {
+    font-size: 28px;
+    margin-top: 28px;
+}
+
+#result-section-favorites h3 {
+    font-weight: bold;
+}
+
+.deleteItemButton {
+    color: darkslategray;
+    border: none;
+    font-size: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    margin-top: 10px;
+}
+
+.addToSportListButton {
+    color: darkslategray;
+    border: none;
+    font-size: 20px;
+    background: rgba(255, 244, 255, -0.1);
+    margin-top: 20px;
+}
+
 .result-page {
     background: url(../images/result.jpg) no-repeat;
     background-size: cover;
@@ -739,7 +764,7 @@ img {
         display: block;
         padding: 2px;
         margin: 14px;
-        width: 100%;
+        width: 86%;
 
     }
 

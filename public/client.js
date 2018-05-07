@@ -64,6 +64,14 @@ function sportDataFromNyt() {
             count++;
             if (count <= 16) {
                 buildTheHtmlOutput += '<div class="col">';
+                buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
+                buildTheHtmlOutput += "<a href='" + dataArrayValue.url + "' target='_blank'>";
+                if (dataArrayValue.multimedia.length != 0) {
+                    buildTheHtmlOutput += '<img src="' + dataArrayValue.multimedia[0].url + '">';
+                } else {
+                    buildTheHtmlOutput += '<img src="images/no-image.png">';
+                }
+                buildTheHtmlOutput += "</a>";
                 buildTheHtmlOutput += '<form class="addToSportList">';
                 buildTheHtmlOutput += '<input type="hidden" class="addToSportListTitle" value="' + dataArrayValue.title + '">';
                 buildTheHtmlOutput += '<input type="hidden" class="addToSportListUrl" value="' + dataArrayValue.url + '">';
@@ -77,15 +85,6 @@ function sportDataFromNyt() {
                 buildTheHtmlOutput += '<i class="fa fa-plus-square-o" aria-hidden="true"></i>';
                 buildTheHtmlOutput += '</button>';
                 buildTheHtmlOutput += '</form>';
-                buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
-                buildTheHtmlOutput += "<a href='" + dataArrayValue.url + "' target='_blank'>";
-                if (dataArrayValue.multimedia.length != 0) {
-                    buildTheHtmlOutput += '<img src="' + dataArrayValue.multimedia[0].url + '">';
-                } else {
-                    buildTheHtmlOutput += '<img src="images/no-image.png">';
-                }
-
-                buildTheHtmlOutput += "</a>";
                 buildTheHtmlOutput += '</div>';
             }
         });
@@ -128,8 +127,14 @@ $(document).on('submit', '.addToSportList', function (event) {
         });
 });
 
+//Favorite section
+$(document).on("click", "#favorite", function (event) {
+    event.preventDefault();
+    $('.hide-me').hide();
+    $('.result-favorite-page').show();
+});
 
-//Populate sport favorite list
+//Populate favorite list
 function populateFavoriteList() {
     let outcome = $('#result-section-favorites .col-favorite');
     $.ajax({
@@ -146,26 +151,20 @@ function populateFavoriteList() {
             $.each(dataOutput.items, function (dataArrayKey, dataArrayValue) {
 
                 buildTheHtmlOutput += '<div class="col">';
-
+                buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
+                buildTheHtmlOutput += "<a href='" + dataArrayValue.url + "' target='_blank'>";
+                buildTheHtmlOutput += '<img src="' + dataArrayValue.image + '">';
+                buildTheHtmlOutput += "</a>";
                 buildTheHtmlOutput += '<form class="deleteFavoritesListForm">';
                 buildTheHtmlOutput += '<input type="hidden" class="deleteFavoritesListId" value="' + dataArrayValue._id + '" >';
                 buildTheHtmlOutput += '<button type="submit" class="deleteItemButton" value="">';
-
                 buildTheHtmlOutput += '<i class="fa fa-minus-square-o" aria-hidden="true"></i>';
                 buildTheHtmlOutput += '</button>';
                 buildTheHtmlOutput += '</form>';
-
-                buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
-                buildTheHtmlOutput += "<a href='" + dataArrayValue.url + "' target='_blank'>";
-
-                buildTheHtmlOutput += '<img src="' + dataArrayValue.image + '">';
-
-
-                buildTheHtmlOutput += "</a>";
                 buildTheHtmlOutput += '</div>';
 
             });
-            $('.result-favorite').show();
+            $('.result-favorite-page').show();
             $(outcome).html(buildTheHtmlOutput);
 
         })
@@ -176,7 +175,7 @@ function populateFavoriteList() {
         });
 }
 
-////User will be able to remove item from list
+//User will be able to remove item from list
 $(document).on('submit', '.deleteFavoritesListForm', function (event) {
     event.preventDefault();
     var itemIdToDelete = $(this).parent().find('.deleteFavoritesListId').val();
@@ -227,18 +226,28 @@ function artDataFromNyt() {
         $.each(dataOutput.results, function (dataArrayKey, dataArrayValue) {
             count++;
             if (count <= 16) {
-                //console.log(count);
                 buildTheHtmlOutput += '<div class="col">';
                 buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
-                buildTheHtmlOutput += "<a href='" + dataArrayValue.web_url + "' target='_blank'>";
+                buildTheHtmlOutput += "<a href='" + dataArrayValue.url + "' target='_blank'>";
                 if (dataArrayValue.multimedia.length != 0) {
                     buildTheHtmlOutput += '<img src="' + dataArrayValue.multimedia[0].url + '">';
                 } else {
                     buildTheHtmlOutput += '<img src="images/no-image.png">';
                 }
-
                 buildTheHtmlOutput += "</a>";
-                //buildTheHtmlOutput += '<p class="hidden">' + dataArrayValue.abstract + '</p>';
+                buildTheHtmlOutput += '<form class="addToSportList">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToSportListTitle" value="' + dataArrayValue.title + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToSportListUrl" value="' + dataArrayValue.url + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="' + dataArrayValue.multimedia[0].url + '">';
+                if (dataArrayValue.multimedia.length != 0) {
+                    buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="' + dataArrayValue.multimedia[0].url + '">';
+                } else {
+                    buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="images/no-image.png">';
+                }
+                buildTheHtmlOutput += '<button type="submit" class="addToSportListButton" value="">';
+                buildTheHtmlOutput += '<i class="fa fa-plus-square-o" aria-hidden="true"></i>';
+                buildTheHtmlOutput += '</button>';
+                buildTheHtmlOutput += '</form>';
                 buildTheHtmlOutput += '</div>';
             }
         });
@@ -249,6 +258,37 @@ function artDataFromNyt() {
         console.log(errorThrown);
     });
 }
+
+//Add article to arts favorite list
+$(document).on('submit', '.addToArtsList', function (event) {
+    event.preventDefault();
+    var titleName = $(this).parent().find('.addToArtsListTitle').val();
+    var urlName = $(this).parent().find('.addToArtsListUrl').val();
+    var image = $(this).parent().find('.addToArtsListImage').val();
+    console.log(titleName, urlName, image);
+    var artsObject = {
+        'title': titleName,
+        'url': urlName,
+        'image': image
+    };
+
+    $.ajax({
+            method: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(artsObject),
+            url: '/add-to-arts-list/',
+        })
+        .done(function (result) {
+            console.log(result);
+            populateFavoriteList();
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        });
+});
 
 //Politics section
 $(document).on("click", "#politics", function (event) {
@@ -271,25 +311,35 @@ function politicsDataFromNyt() {
         type: "GET"
 
     }).done(function (dataOutput) {
-        //console.log(dataOutput);
+        console.log(dataOutput);
         outcome.html("");
         let count = 0;
         let buildTheHtmlOutput = "";
         $.each(dataOutput.results, function (dataArrayKey, dataArrayValue) {
             count++;
             if (count <= 16) {
-                //console.log(count);
                 buildTheHtmlOutput += '<div class="col">';
                 buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
-                buildTheHtmlOutput += "<a href='" + dataArrayValue.web_url + "' target='_blank'>";
+                buildTheHtmlOutput += "<a href='" + dataArrayValue.url + "' target='_blank'>";
                 if (dataArrayValue.multimedia.length != 0) {
                     buildTheHtmlOutput += '<img src="' + dataArrayValue.multimedia[0].url + '">';
                 } else {
                     buildTheHtmlOutput += '<img src="images/no-image.png">';
                 }
-
                 buildTheHtmlOutput += "</a>";
-                //buildTheHtmlOutput += '<p class="hidden">' + dataArrayValue.abstract + '</p>';
+                buildTheHtmlOutput += '<form class="addToSportList">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToSportListTitle" value="' + dataArrayValue.title + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToSportListUrl" value="' + dataArrayValue.url + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="' + dataArrayValue.multimedia[0].url + '">';
+                if (dataArrayValue.multimedia.length != 0) {
+                    buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="' + dataArrayValue.multimedia[0].url + '">';
+                } else {
+                    buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="images/no-image.png">';
+                }
+                buildTheHtmlOutput += '<button type="submit" class="addToSportListButton" value="">';
+                buildTheHtmlOutput += '<i class="fa fa-plus-square-o" aria-hidden="true"></i>';
+                buildTheHtmlOutput += '</button>';
+                buildTheHtmlOutput += '</form>';
                 buildTheHtmlOutput += '</div>';
             }
         });
@@ -300,6 +350,37 @@ function politicsDataFromNyt() {
         console.log(errorThrown);
     });
 }
+
+//Add article to politics favorite list
+$(document).on('submit', '.addToPoliticsList', function (event) {
+    event.preventDefault();
+    var titleName = $(this).parent().find('.addToPoliticsListTitle').val();
+    var urlName = $(this).parent().find('.addToPoliticsListUrl').val();
+    var image = $(this).parent().find('.addToPoliticsListImage').val();
+    console.log(titleName, urlName, image);
+    var politicsObject = {
+        'title': titleName,
+        'url': urlName,
+        'image': image
+    };
+
+    $.ajax({
+            method: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(politicsObject),
+            url: '/add-to-politics-list/',
+        })
+        .done(function (result) {
+            console.log(result);
+            populateFavoriteList();
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        });
+});
 
 //Business section
 $(document).on("click", "#business", function (event) {
@@ -329,18 +410,28 @@ function businessDataFromNyt() {
         $.each(dataOutput.results, function (dataArrayKey, dataArrayValue) {
             count++;
             if (count <= 16) {
-                //console.log(count);
                 buildTheHtmlOutput += '<div class="col">';
                 buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
-                buildTheHtmlOutput += "<a href='" + dataArrayValue.web_url + "' target='_blank'>";
+                buildTheHtmlOutput += "<a href='" + dataArrayValue.url + "' target='_blank'>";
                 if (dataArrayValue.multimedia.length != 0) {
                     buildTheHtmlOutput += '<img src="' + dataArrayValue.multimedia[0].url + '">';
                 } else {
                     buildTheHtmlOutput += '<img src="images/no-image.png">';
                 }
-
                 buildTheHtmlOutput += "</a>";
-                //buildTheHtmlOutput += '<p class="hidden">' + dataArrayValue.abstract + '</p>';
+                buildTheHtmlOutput += '<form class="addToSportList">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToSportListTitle" value="' + dataArrayValue.title + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToSportListUrl" value="' + dataArrayValue.url + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="' + dataArrayValue.multimedia[0].url + '">';
+                if (dataArrayValue.multimedia.length != 0) {
+                    buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="' + dataArrayValue.multimedia[0].url + '">';
+                } else {
+                    buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="images/no-image.png">';
+                }
+                buildTheHtmlOutput += '<button type="submit" class="addToSportListButton" value="">';
+                buildTheHtmlOutput += '<i class="fa fa-plus-square-o" aria-hidden="true"></i>';
+                buildTheHtmlOutput += '</button>';
+                buildTheHtmlOutput += '</form>';
                 buildTheHtmlOutput += '</div>';
             }
         });
@@ -351,6 +442,37 @@ function businessDataFromNyt() {
         console.log(errorThrown);
     });
 }
+
+//Add article to business favorite list
+$(document).on('submit', '.addToBusinessList', function (event) {
+    event.preventDefault();
+    var titleName = $(this).parent().find('.addToBusinessListTitle').val();
+    var urlName = $(this).parent().find('.addToBusinessListUrl').val();
+    var image = $(this).parent().find('.addToBusinessListImage').val();
+    console.log(titleName, urlName, image);
+    var businessObject = {
+        'title': titleName,
+        'url': urlName,
+        'image': image
+    };
+
+    $.ajax({
+            method: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(businessObject),
+            url: '/add-to-business-list/',
+        })
+        .done(function (result) {
+            console.log(result);
+            populateFavoriteList();
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        });
+});
 
 //Search section
 $(document).on("click", "#search", function (event) {

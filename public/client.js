@@ -65,6 +65,19 @@ function sportDataFromNyt() {
             if (count <= 16) {
                 buildTheHtmlOutput += '<div class="col">';
                 buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
+                buildTheHtmlOutput += '<form class="addToSportList">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToSportListTitle" value="' + dataArrayValue.title + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToSportListUrl" value="' + dataArrayValue.url + '">';
+                //buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="' + dataArrayValue.multimedia[0].url + '">';
+                if (dataArrayValue.multimedia.length != 0) {
+                    buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="' + dataArrayValue.multimedia[0].url + '">';
+                } else {
+                    buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="images/no-image.png">';
+                }
+                buildTheHtmlOutput += '<button type="submit" class="addToFavListButton" value="">';
+                buildTheHtmlOutput += '<i class="fa fa-plus-square-o" aria-hidden="true"></i>';
+                buildTheHtmlOutput += '</button>';
+                buildTheHtmlOutput += '</form>';
                 buildTheHtmlOutput += "<a href='" + dataArrayValue.url + "' target='_blank'>";
                 if (dataArrayValue.multimedia.length != 0) {
                     buildTheHtmlOutput += '<img src="' + dataArrayValue.multimedia[0].url + '">';
@@ -72,19 +85,6 @@ function sportDataFromNyt() {
                     buildTheHtmlOutput += '<img src="images/no-image.png">';
                 }
                 buildTheHtmlOutput += "</a>";
-                buildTheHtmlOutput += '<form class="addToSportList">';
-                buildTheHtmlOutput += '<input type="hidden" class="addToSportListTitle" value="' + dataArrayValue.title + '">';
-                buildTheHtmlOutput += '<input type="hidden" class="addToSportListUrl" value="' + dataArrayValue.url + '">';
-                buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="' + dataArrayValue.multimedia[0].url + '">';
-                if (dataArrayValue.multimedia.length != 0) {
-                    buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="' + dataArrayValue.multimedia[0].url + '">';
-                } else {
-                    buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="images/no-image.png">';
-                }
-                buildTheHtmlOutput += '<button type="submit" class="addToSportListButton" value="">';
-                buildTheHtmlOutput += '<i class="fa fa-plus-square-o" aria-hidden="true"></i>';
-                buildTheHtmlOutput += '</button>';
-                buildTheHtmlOutput += '</form>';
                 buildTheHtmlOutput += '</div>';
             }
         });
@@ -99,6 +99,7 @@ function sportDataFromNyt() {
 //Add article to sport favorite list
 $(document).on('submit', '.addToSportList', function (event) {
     event.preventDefault();
+    console.log("inside the Sport trigger");
     var titleName = $(this).parent().find('.addToSportListTitle').val();
     var urlName = $(this).parent().find('.addToSportListUrl').val();
     var image = $(this).parent().find('.addToSportListImage').val();
@@ -126,76 +127,6 @@ $(document).on('submit', '.addToSportList', function (event) {
             console.log(errorThrown);
         });
 });
-
-//Favorite section
-$(document).on("click", "#favorite", function (event) {
-    event.preventDefault();
-    $('.hide-me').hide();
-    $('.result-favorite-page').show();
-});
-
-//Populate favorite list
-function populateFavoriteList() {
-    let outcome = $('#result-section-favorites .col-favorite');
-    $.ajax({
-            type: 'GET',
-            url: '/populate-favorites-list',
-            dataType: 'json',
-            category: 'sport'
-
-        })
-        .done(function (dataOutput) {
-            console.log(dataOutput);
-            outcome.html("");
-            let buildTheHtmlOutput = "";
-            $.each(dataOutput.items, function (dataArrayKey, dataArrayValue) {
-
-                buildTheHtmlOutput += '<div class="col">';
-                buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
-                buildTheHtmlOutput += "<a href='" + dataArrayValue.url + "' target='_blank'>";
-                buildTheHtmlOutput += '<img src="' + dataArrayValue.image + '">';
-                buildTheHtmlOutput += "</a>";
-                buildTheHtmlOutput += '<form class="deleteFavoritesListForm">';
-                buildTheHtmlOutput += '<input type="hidden" class="deleteFavoritesListId" value="' + dataArrayValue._id + '" >';
-                buildTheHtmlOutput += '<button type="submit" class="deleteItemButton" value="">';
-                buildTheHtmlOutput += '<i class="fa fa-minus-square-o" aria-hidden="true"></i>';
-                buildTheHtmlOutput += '</button>';
-                buildTheHtmlOutput += '</form>';
-                buildTheHtmlOutput += '</div>';
-
-            });
-            $('.result-favorite-page').show();
-            $(outcome).html(buildTheHtmlOutput);
-
-        })
-        .fail(function (jqXHR, error, errorThrown) {
-            console.log(jqXHR);
-            console.log(error);
-            console.log(errorThrown);
-        });
-}
-
-//User will be able to remove item from list
-$(document).on('submit', '.deleteFavoritesListForm', function (event) {
-    event.preventDefault();
-    var itemIdToDelete = $(this).parent().find('.deleteFavoritesListId').val();
-    $.ajax({
-            method: 'DELETE',
-            dataType: 'json',
-            contentType: 'application/json',
-            url: '/delete-from-favorites-list/' + itemIdToDelete,
-        })
-        .done(function (result) {
-            populateFavoriteList();
-        })
-        .fail(function (jqXHR, error, errorThrown) {
-            console.log(jqXHR);
-            console.log(error);
-            console.log(errorThrown);
-            sweetAlert('Oops...', 'Please try again', 'error');
-        });
-});
-
 
 
 //Arts section
@@ -228,6 +159,19 @@ function artDataFromNyt() {
             if (count <= 16) {
                 buildTheHtmlOutput += '<div class="col">';
                 buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
+                buildTheHtmlOutput += '<form class="addToArtsList">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToArtsListTitle" value="' + dataArrayValue.title + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToArtsListUrl" value="' + dataArrayValue.url + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToArtsListImage" value="' + dataArrayValue.multimedia[0].url + '">';
+                if (dataArrayValue.multimedia.length != 0) {
+                    buildTheHtmlOutput += '<input type="hidden" class="addToArtsListImage" value="' + dataArrayValue.multimedia[0].url + '">';
+                } else {
+                    buildTheHtmlOutput += '<input type="hidden" class="addToArtsListImage" value="images/no-image.png">';
+                }
+                buildTheHtmlOutput += '<button type="submit" class="addToFavListButton" value="">';
+                buildTheHtmlOutput += '<i class="fa fa-plus-square-o" aria-hidden="true"></i>';
+                buildTheHtmlOutput += '</button>';
+                buildTheHtmlOutput += '</form>';
                 buildTheHtmlOutput += "<a href='" + dataArrayValue.url + "' target='_blank'>";
                 if (dataArrayValue.multimedia.length != 0) {
                     buildTheHtmlOutput += '<img src="' + dataArrayValue.multimedia[0].url + '">';
@@ -235,19 +179,6 @@ function artDataFromNyt() {
                     buildTheHtmlOutput += '<img src="images/no-image.png">';
                 }
                 buildTheHtmlOutput += "</a>";
-                buildTheHtmlOutput += '<form class="addToSportList">';
-                buildTheHtmlOutput += '<input type="hidden" class="addToSportListTitle" value="' + dataArrayValue.title + '">';
-                buildTheHtmlOutput += '<input type="hidden" class="addToSportListUrl" value="' + dataArrayValue.url + '">';
-                buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="' + dataArrayValue.multimedia[0].url + '">';
-                if (dataArrayValue.multimedia.length != 0) {
-                    buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="' + dataArrayValue.multimedia[0].url + '">';
-                } else {
-                    buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="images/no-image.png">';
-                }
-                buildTheHtmlOutput += '<button type="submit" class="addToSportListButton" value="">';
-                buildTheHtmlOutput += '<i class="fa fa-plus-square-o" aria-hidden="true"></i>';
-                buildTheHtmlOutput += '</button>';
-                buildTheHtmlOutput += '</form>';
                 buildTheHtmlOutput += '</div>';
             }
         });
@@ -262,6 +193,7 @@ function artDataFromNyt() {
 //Add article to arts favorite list
 $(document).on('submit', '.addToArtsList', function (event) {
     event.preventDefault();
+    console.log("inside the Arts trigger");
     var titleName = $(this).parent().find('.addToArtsListTitle').val();
     var urlName = $(this).parent().find('.addToArtsListUrl').val();
     var image = $(this).parent().find('.addToArtsListImage').val();
@@ -320,6 +252,19 @@ function politicsDataFromNyt() {
             if (count <= 16) {
                 buildTheHtmlOutput += '<div class="col">';
                 buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
+                buildTheHtmlOutput += '<form class="addToPoliticsList">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToPoliticsListTitle" value="' + dataArrayValue.title + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToPoliticsListUrl" value="' + dataArrayValue.url + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToPoliticsListImage" value="' + dataArrayValue.multimedia[0].url + '">';
+                if (dataArrayValue.multimedia.length != 0) {
+                    buildTheHtmlOutput += '<input type="hidden" class="addToPoliticsListImage" value="' + dataArrayValue.multimedia[0].url + '">';
+                } else {
+                    buildTheHtmlOutput += '<input type="hidden" class="addToPoliticsListImage" value="images/no-image.png">';
+                }
+                buildTheHtmlOutput += '<button type="submit" class="addToFavListButton" value="">';
+                buildTheHtmlOutput += '<i class="fa fa-plus-square-o" aria-hidden="true"></i>';
+                buildTheHtmlOutput += '</button>';
+                buildTheHtmlOutput += '</form>';
                 buildTheHtmlOutput += "<a href='" + dataArrayValue.url + "' target='_blank'>";
                 if (dataArrayValue.multimedia.length != 0) {
                     buildTheHtmlOutput += '<img src="' + dataArrayValue.multimedia[0].url + '">';
@@ -327,19 +272,6 @@ function politicsDataFromNyt() {
                     buildTheHtmlOutput += '<img src="images/no-image.png">';
                 }
                 buildTheHtmlOutput += "</a>";
-                buildTheHtmlOutput += '<form class="addToSportList">';
-                buildTheHtmlOutput += '<input type="hidden" class="addToSportListTitle" value="' + dataArrayValue.title + '">';
-                buildTheHtmlOutput += '<input type="hidden" class="addToSportListUrl" value="' + dataArrayValue.url + '">';
-                buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="' + dataArrayValue.multimedia[0].url + '">';
-                if (dataArrayValue.multimedia.length != 0) {
-                    buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="' + dataArrayValue.multimedia[0].url + '">';
-                } else {
-                    buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="images/no-image.png">';
-                }
-                buildTheHtmlOutput += '<button type="submit" class="addToSportListButton" value="">';
-                buildTheHtmlOutput += '<i class="fa fa-plus-square-o" aria-hidden="true"></i>';
-                buildTheHtmlOutput += '</button>';
-                buildTheHtmlOutput += '</form>';
                 buildTheHtmlOutput += '</div>';
             }
         });
@@ -354,6 +286,7 @@ function politicsDataFromNyt() {
 //Add article to politics favorite list
 $(document).on('submit', '.addToPoliticsList', function (event) {
     event.preventDefault();
+    console.log("inside the Politics trigger");
     var titleName = $(this).parent().find('.addToPoliticsListTitle').val();
     var urlName = $(this).parent().find('.addToPoliticsListUrl').val();
     var image = $(this).parent().find('.addToPoliticsListImage').val();
@@ -412,6 +345,19 @@ function businessDataFromNyt() {
             if (count <= 16) {
                 buildTheHtmlOutput += '<div class="col">';
                 buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
+                buildTheHtmlOutput += '<form class="addToBusinessList">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToBusinessListTitle" value="' + dataArrayValue.title + '">';
+                buildTheHtmlOutput += '<input type="hidden" class="addToBusinessListUrl" value="' + dataArrayValue.url + '">';
+                //buildTheHtmlOutput += '<input type="hidden" class="addToBusinessListImage" value="' + dataArrayValue.multimedia[0].url + '">';
+                if (dataArrayValue.multimedia.length != 0) {
+                    buildTheHtmlOutput += '<input type="hidden" class="addToBusinessListImage" value="' + dataArrayValue.multimedia[0].url + '">';
+                } else {
+                    buildTheHtmlOutput += '<input type="hidden" class="addToBusinessListImage" value="images/no-image.png">';
+                }
+                buildTheHtmlOutput += '<button type="submit" class="addToFavListButton" value="">';
+                buildTheHtmlOutput += '<i class="fa fa-plus-square-o" aria-hidden="true"></i>';
+                buildTheHtmlOutput += '</button>';
+                buildTheHtmlOutput += '</form>';
                 buildTheHtmlOutput += "<a href='" + dataArrayValue.url + "' target='_blank'>";
                 if (dataArrayValue.multimedia.length != 0) {
                     buildTheHtmlOutput += '<img src="' + dataArrayValue.multimedia[0].url + '">';
@@ -419,19 +365,6 @@ function businessDataFromNyt() {
                     buildTheHtmlOutput += '<img src="images/no-image.png">';
                 }
                 buildTheHtmlOutput += "</a>";
-                buildTheHtmlOutput += '<form class="addToSportList">';
-                buildTheHtmlOutput += '<input type="hidden" class="addToSportListTitle" value="' + dataArrayValue.title + '">';
-                buildTheHtmlOutput += '<input type="hidden" class="addToSportListUrl" value="' + dataArrayValue.url + '">';
-                buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="' + dataArrayValue.multimedia[0].url + '">';
-                if (dataArrayValue.multimedia.length != 0) {
-                    buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="' + dataArrayValue.multimedia[0].url + '">';
-                } else {
-                    buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="images/no-image.png">';
-                }
-                buildTheHtmlOutput += '<button type="submit" class="addToSportListButton" value="">';
-                buildTheHtmlOutput += '<i class="fa fa-plus-square-o" aria-hidden="true"></i>';
-                buildTheHtmlOutput += '</button>';
-                buildTheHtmlOutput += '</form>';
                 buildTheHtmlOutput += '</div>';
             }
         });
@@ -446,6 +379,7 @@ function businessDataFromNyt() {
 //Add article to business favorite list
 $(document).on('submit', '.addToBusinessList', function (event) {
     event.preventDefault();
+    console.log("inside the Business trigger");
     var titleName = $(this).parent().find('.addToBusinessListTitle').val();
     var urlName = $(this).parent().find('.addToBusinessListUrl').val();
     var image = $(this).parent().find('.addToBusinessListImage').val();
@@ -474,6 +408,77 @@ $(document).on('submit', '.addToBusinessList', function (event) {
         });
 });
 
+//Favorite section
+$(document).on("click", "#favorite", function (event) {
+    event.preventDefault();
+    $('.hide-me').hide();
+    $('.result-favorite-page').show();
+});
+
+//Populate favorite list
+function populateFavoriteList() {
+    let outcome = $('#result-section-favorites .col-favorite');
+    $.ajax({
+            type: 'GET',
+            url: '/populate-favorites-list',
+            dataType: 'json',
+            category: 'sport'
+
+        })
+        .done(function (dataOutput) {
+            console.log("inside the populateFavoriteList");
+            console.log(dataOutput);
+            outcome.html("");
+            let buildTheHtmlOutput = "";
+            $.each(dataOutput.items, function (dataArrayKey, dataArrayValue) {
+
+                buildTheHtmlOutput += '<div class="col">';
+                buildTheHtmlOutput += '<p>' + dataArrayValue.title + '</p><hr>';
+                buildTheHtmlOutput += '<form class="deleteFavoritesListForm">';
+                buildTheHtmlOutput += '<input type="hidden" class="deleteFavoritesListId" value="' + dataArrayValue._id + '" >';
+                buildTheHtmlOutput += '<button type="submit" class="deleteItemButton" value="">';
+                buildTheHtmlOutput += '<i class="fa fa-minus-square-o" aria-hidden="true"></i>';
+                buildTheHtmlOutput += '</button>';
+                buildTheHtmlOutput += '</form>';
+                buildTheHtmlOutput += "<a href='" + dataArrayValue.url + "' target='_blank'>";
+                buildTheHtmlOutput += '<img src="' + dataArrayValue.image + '">';
+                buildTheHtmlOutput += "</a>";
+                buildTheHtmlOutput += '</div>';
+
+            });
+            $('.result-favorite-page').show();
+            $(outcome).html(buildTheHtmlOutput);
+
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        });
+}
+
+//User will be able to remove item from list
+$(document).on('submit', '.deleteFavoritesListForm', function (event) {
+    event.preventDefault();
+    var itemIdToDelete = $(this).parent().find('.deleteFavoritesListId').val();
+    $.ajax({
+            method: 'DELETE',
+            dataType: 'json',
+            contentType: 'application/json',
+            url: '/delete-from-favorites-list/' + itemIdToDelete,
+        })
+        .done(function (result) {
+            populateFavoriteList();
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+            sweetAlert('Oops...', 'Please try again', 'error');
+        });
+});
+
+
 //Search section
 $(document).on("click", "#search", function (event) {
     event.preventDefault();
@@ -486,6 +491,8 @@ $(document).on("click", "#search", function (event) {
 function searchDataFromNyt() {
     $('#login_form').submit(function () {
         event.preventDefault();
+        //        $('.result-favorite-page').show();
+        //        $('.result-page').show();
         var test = $("#loginDate").val();
         console.log(test);
         var repleacedDateString = test.replace(/-/gi, "");

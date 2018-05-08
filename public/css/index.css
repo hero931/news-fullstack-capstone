@@ -149,6 +149,10 @@ ul li a {
 .col p {
     font-size: 16px;
     font-weight: bold;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 3.6em;
 }
 
 img {
@@ -440,14 +444,16 @@ img {
     font-size: 20px;
     background: rgba(255, 255, 255, 0.9);
     margin-top: 10px;
+    float: left;
 }
 
-.addToSportListButton {
+.addToFavListButton {
     color: darkslategray;
     border: none;
     font-size: 20px;
     background: rgba(255, 244, 255, -0.1);
-    margin-top: 20px;
+    margin-top: 10px;
+    float: left;
 }
 
 .result-page {
@@ -455,6 +461,8 @@ img {
     background-size: cover;
     background-position: center center;
 }
+
+.fa fa-plus-square-o {}
 
 /* MEDIA QUERIES */
 

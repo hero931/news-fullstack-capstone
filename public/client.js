@@ -68,13 +68,12 @@ function sportDataFromNyt() {
                 buildTheHtmlOutput += '<form class="addToSportList">';
                 buildTheHtmlOutput += '<input type="hidden" class="addToSportListTitle" value="' + dataArrayValue.title + '">';
                 buildTheHtmlOutput += '<input type="hidden" class="addToSportListUrl" value="' + dataArrayValue.url + '">';
-                //buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="' + dataArrayValue.multimedia[0].url + '">';
                 if (dataArrayValue.multimedia.length != 0) {
                     buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="' + dataArrayValue.multimedia[0].url + '">';
                 } else {
                     buildTheHtmlOutput += '<input type="hidden" class="addToSportListImage" value="images/no-image.png">';
                 }
-                buildTheHtmlOutput += '<button type="submit" class="addToFavListButton" value="">';
+                buildTheHtmlOutput += '<button type="submit" class="addToFavListButton">';
                 buildTheHtmlOutput += '<i class="fa fa-plus-square-o" aria-hidden="true"></i>';
                 buildTheHtmlOutput += '</button>';
                 buildTheHtmlOutput += '</form>';
@@ -162,13 +161,12 @@ function artDataFromNyt() {
                 buildTheHtmlOutput += '<form class="addToArtsList">';
                 buildTheHtmlOutput += '<input type="hidden" class="addToArtsListTitle" value="' + dataArrayValue.title + '">';
                 buildTheHtmlOutput += '<input type="hidden" class="addToArtsListUrl" value="' + dataArrayValue.url + '">';
-                buildTheHtmlOutput += '<input type="hidden" class="addToArtsListImage" value="' + dataArrayValue.multimedia[0].url + '">';
                 if (dataArrayValue.multimedia.length != 0) {
                     buildTheHtmlOutput += '<input type="hidden" class="addToArtsListImage" value="' + dataArrayValue.multimedia[0].url + '">';
                 } else {
                     buildTheHtmlOutput += '<input type="hidden" class="addToArtsListImage" value="images/no-image.png">';
                 }
-                buildTheHtmlOutput += '<button type="submit" class="addToFavListButton" value="">';
+                buildTheHtmlOutput += '<button type="submit" class="addToFavListButton">';
                 buildTheHtmlOutput += '<i class="fa fa-plus-square-o" aria-hidden="true"></i>';
                 buildTheHtmlOutput += '</button>';
                 buildTheHtmlOutput += '</form>';
@@ -255,13 +253,12 @@ function politicsDataFromNyt() {
                 buildTheHtmlOutput += '<form class="addToPoliticsList">';
                 buildTheHtmlOutput += '<input type="hidden" class="addToPoliticsListTitle" value="' + dataArrayValue.title + '">';
                 buildTheHtmlOutput += '<input type="hidden" class="addToPoliticsListUrl" value="' + dataArrayValue.url + '">';
-                //buildTheHtmlOutput += '<input type="hidden" class="addToPoliticsListImage" value="' + dataArrayValue.multimedia[0].url + '">';
                 if (dataArrayValue.multimedia.length != 0) {
                     buildTheHtmlOutput += '<input type="hidden" class="addToPoliticsListImage" value="' + dataArrayValue.multimedia[0].url + '">';
                 } else {
                     buildTheHtmlOutput += '<input type="hidden" class="addToPoliticsListImage" value="images/no-image.png">';
                 }
-                buildTheHtmlOutput += '<button type="submit" class="addToFavListButton" value="">';
+                buildTheHtmlOutput += '<button type="submit" class="addToFavListButton">';
                 buildTheHtmlOutput += '<i class="fa fa-plus-square-o" aria-hidden="true"></i>';
                 buildTheHtmlOutput += '</button>';
                 buildTheHtmlOutput += '</form>';
@@ -315,6 +312,9 @@ $(document).on('submit', '.addToPoliticsList', function (event) {
         });
 });
 
+
+
+
 //Business section
 $(document).on("click", "#business", function (event) {
     event.preventDefault();
@@ -348,13 +348,12 @@ function businessDataFromNyt() {
                 buildTheHtmlOutput += '<form class="addToBusinessList">';
                 buildTheHtmlOutput += '<input type="hidden" class="addToBusinessListTitle" value="' + dataArrayValue.title + '">';
                 buildTheHtmlOutput += '<input type="hidden" class="addToBusinessListUrl" value="' + dataArrayValue.url + '">';
-                //buildTheHtmlOutput += '<input type="hidden" class="addToBusinessListImage" value="' + dataArrayValue.multimedia[0].url + '">';
                 if (dataArrayValue.multimedia.length != 0) {
                     buildTheHtmlOutput += '<input type="hidden" class="addToBusinessListImage" value="' + dataArrayValue.multimedia[0].url + '">';
                 } else {
                     buildTheHtmlOutput += '<input type="hidden" class="addToBusinessListImage" value="images/no-image.png">';
                 }
-                buildTheHtmlOutput += '<button type="submit" class="addToFavListButton" value="">';
+                buildTheHtmlOutput += '<button type="submit" class="addToFavListButton">';
                 buildTheHtmlOutput += '<i class="fa fa-plus-square-o" aria-hidden="true"></i>';
                 buildTheHtmlOutput += '</button>';
                 buildTheHtmlOutput += '</form>';
@@ -484,7 +483,7 @@ $(document).on("click", "#search", function (event) {
     event.preventDefault();
     $('.hide-me').hide();
     $('.login-page').show();
-    $('#result-section').addClass('hide-me');
+    $('#result-section').hide();
 });
 
 //Search for a specific date

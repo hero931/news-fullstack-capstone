@@ -127,7 +127,6 @@ $(document).on('submit', '.addToSportList', function (event) {
         });
 });
 
-
 //Arts section
 $(document).on("click", "#arts", function (event) {
     event.preventDefault();

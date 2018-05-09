@@ -185,7 +185,10 @@ img {
     margin-top: -15%;
 }
 
-.contSport {
+.contSport,
+.contArt,
+.contPolitics,
+.contBusiness {
     font-family: AvenirNextBold;
     box-sizing: border-box;
     display: block;
@@ -196,16 +199,25 @@ img {
     text-align: center;
 }
 
-.intSport {
+.intSport,
+.intArt,
+.intPolitics,
+.intBusiness {
     font-size: 100px;
     color: gainsboro;
 }
 
-.sport-int-page {
+.sport-int-page,
+.art-int-page,
+.politics-int-page,
+.business-int-page {
     background-color: azure;
 }
 
-#sport-section {
+#sport-section,
+#art-section,
+#politics-section,
+#business-section {
     border-image: linear-gradient(to right, grey 0%, red 100%);
     border-image-slice: 2;
     margin: auto;
@@ -222,115 +234,16 @@ img {
     background-position: center center;
 }
 
-.sportForm {
-    width: 250px;
-    border: 1px solid red;
-
-}
-
-.contArt {
-    font-family: AvenirNextBold;
-    box-sizing: border-box;
-    display: block;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    text-align: center;
-}
-
-.intArt {
-    font-size: 100px;
-    color: gainsboro;
-}
-
-.art-int-page {
-    background-color: azure;
-}
-
-#art-section {
-    border-image: linear-gradient(to right, grey 0%, red 100%);
-    border-image-slice: 2;
-    margin: auto;
-    width: 80%;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 10px;
-    box-shadow: 15px 15px 40px rgba(25, 38, 51, 0.4);
-    text-align: center;
-}
-
 .art-page {
     background: url(../images/artOne.jpg) no-repeat;
     background-size: cover;
     background-position: center center;
 }
 
-.contPolitics {
-    font-family: AvenirNextBold;
-    box-sizing: border-box;
-    display: block;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    text-align: center;
-}
-
-.intPolitics {
-    font-size: 100px;
-    color: gainsboro;
-}
-
-.politics-int-page {
-    background-color: azure;
-}
-
-#politics-section {
-    border-image: linear-gradient(to right, grey 0%, red 100%);
-    border-image-slice: 2;
-    margin: auto;
-    width: 80%;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 10px;
-    box-shadow: 15px 15px 40px rgba(25, 38, 51, 0.4);
-    text-align: center;
-}
-
 .politics-page {
     background: url(../images/politics.jpg) no-repeat;
     background-size: cover;
     background-position: center center;
-}
-
-.contBusiness {
-    font-family: AvenirNextBold;
-    box-sizing: border-box;
-    display: block;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    text-align: center;
-}
-
-.intBusiness {
-    font-size: 100px;
-    color: gainsboro;
-}
-
-.business-int-page {
-    background-color: azure;
-}
-
-#business-section {
-    border-image: linear-gradient(to right, grey 0%, red 100%);
-    border-image-slice: 2;
-    margin: auto;
-    width: 80%;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 10px;
-    box-shadow: 15px 15px 40px rgba(25, 38, 51, 0.4);
-    text-align: center;
 }
 
 .business-page {

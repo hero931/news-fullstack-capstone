@@ -39,7 +39,7 @@ $(document).on("click", "#sports", function (event) {
     event.preventDefault();
     $('.hide-me').hide();
     $('.sport-page').show();
-    sportDataFromNyt();
+    //sportDataFromNyt();
 });
 
 //Sport results
@@ -255,7 +255,7 @@ function politicsDataFromNyt() {
                 buildTheHtmlOutput += '<form class="addToPoliticsList">';
                 buildTheHtmlOutput += '<input type="hidden" class="addToPoliticsListTitle" value="' + dataArrayValue.title + '">';
                 buildTheHtmlOutput += '<input type="hidden" class="addToPoliticsListUrl" value="' + dataArrayValue.url + '">';
-                buildTheHtmlOutput += '<input type="hidden" class="addToPoliticsListImage" value="' + dataArrayValue.multimedia[0].url + '">';
+                //buildTheHtmlOutput += '<input type="hidden" class="addToPoliticsListImage" value="' + dataArrayValue.multimedia[0].url + '">';
                 if (dataArrayValue.multimedia.length != 0) {
                     buildTheHtmlOutput += '<input type="hidden" class="addToPoliticsListImage" value="' + dataArrayValue.multimedia[0].url + '">';
                 } else {

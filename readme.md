@@ -68,7 +68,7 @@ A bit different approach to see the news based on interest, instead of having me
 
 
 ## Working Prototype
-Find a working prototype with Node at https://news-fullstack-capstone.herokuapp.com/
+Find a working prototype with Node at https://news-fullstack-capstone.herokuapp.com/ and with React https://hero931.github.io/news-fullstack-capstone-react/build
 
 
 ## Functionality
@@ -94,6 +94,17 @@ When a user starts navigating from the landing page results will be shown up bas
 ## API Documentation
 API endpoints for the back end include:
 
+
+## Node command lines
+* npm install ==> install all node modules
+* nodemon server.js ==> run node server
+* npm test ==> run the tests
+
+## React command lines
+* npm install ==> install all node modules
+* npm run build ==> build the react files in the "build" folder
+* npm start ==> run react server on http://127.0.0.1:8080
+* npm test ==> run the tests
 
 ## Development Roadmap
 Planned additional features and improvements will allow users to:

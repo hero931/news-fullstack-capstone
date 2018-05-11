@@ -5,7 +5,6 @@ $(document).ready(function () {
     artDataFromNyt();
     politicsDataFromNyt();
     businessDataFromNyt();
-    searchDataFromNyt();
 });
 
 //Open sidebar
@@ -486,8 +485,7 @@ $(document).on("click", "#search", function (event) {
 });
 
 //Search for a specific date
-function searchDataFromNyt() {
-    $('#login_form').submit(function () {
+$(document).on('submit', '#login_form', function (event) {
         event.preventDefault();
         //        $('.result-favorite-page').show();
         //        $('.result-page').show();
@@ -511,6 +509,7 @@ function searchDataFromNyt() {
 
         }).done(function (dataOutput) {
             console.log(dataOutput);
+            //$('#result-section').show();
             outcome.html("");
             let count = 0;
             let buildTheHtmlOutput = "";
@@ -533,10 +532,12 @@ function searchDataFromNyt() {
                 }
             });
             $(outcome).html(buildTheHtmlOutput);
+            $('.result-page').show();
+            $('#result-section').show();
         }).fail(function (jqXHR, error, errorThrown) {
             console.log(jqXHR);
             console.log(error);
             console.log(errorThrown);
         });
     });
-}
+

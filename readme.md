@@ -27,7 +27,7 @@ FAVORITE LIST:
 
 SEARCH PAGE:
 
-![image](https://github.com/hero931/news-fullstack-capstone-react/blob/master/github-images/search.png)
+![image](https://github.com/hero931/news-fullstack-capstone/blob/master/github-images/search.png)
 
 
 RESULTS PAGE:
